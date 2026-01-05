@@ -1,0 +1,28 @@
+﻿
+
+footer#footer {
+    color: #b8b7b7;
+    padding-top: 30px;
+}
+
+    footer#footer ul {
+        list-style-type: none;
+    }
+
+
+footer#footer ul li{
+    height:25px;
+    margin-right:-13px;
+}
+
+
+    footer#footer ul li i {
+        margin-right: -13px;
+        color:aqua;
+    }
+
+    footer#footer ul li a {
+        color: floralwhite
+    }
+
+
