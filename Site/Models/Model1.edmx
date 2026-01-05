@@ -1,0 +1,1829 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="LibraryMISModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'LibraryMIS.dbo.Activity' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Activity">
+          <Key>
+            <PropertyRef Name="user_id" />
+            <PropertyRef Name="activity_type" />
+            <PropertyRef Name="date_time" />
+          </Key>
+          <Property Name="id" Type="bigint" />
+          <Property Name="user_id" Type="int" Nullable="false" />
+          <Property Name="activity_type" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="date_time" Type="datetime" Nullable="false" />
+          <Property Name="person_id" Type="bigint" />
+          <Property Name="edition_id" Type="bigint" />
+        </EntityType>
+        <EntityType Name="Author">
+          <Key>
+            <PropertyRef Name="author_id" />
+          </Key>
+          <Property Name="author_id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="author_firstname" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="author_lastname" Type="nvarchar" MaxLength="100" />
+          <Property Name="author_description" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="Book">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="s_no" Type="bigint" Nullable="false" />
+          <Property Name="book_type" Type="nvarchar" MaxLength="250" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BookAndmagazine">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="edition_id" Type="bigint" />
+          <Property Name="publication_no" Type="smallint" Nullable="false" />
+          <Property Name="publication_place" Type="nvarchar" MaxLength="250" />
+          <Property Name="publisher_name" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="BookAuthor">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="author_id" Type="bigint" Nullable="false" />
+          <Property Name="s_no" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Branch">
+          <Key>
+            <PropertyRef Name="branch_id" />
+          </Key>
+          <Property Name="branch_id" Type="tinyint" Nullable="false" />
+          <Property Name="branch_name" Type="nvarchar" MaxLength="250" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Dealing">
+          <Key>
+            <PropertyRef Name="dealing_id" />
+          </Key>
+          <Property Name="dealing_id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="person_id" Type="bigint" Nullable="false" />
+          <Property Name="edition_id" Type="bigint" Nullable="false" />
+          <Property Name="issue_date" Type="date" Nullable="false" />
+          <Property Name="return_date" Type="date" Nullable="false" />
+          <Property Name="paid_money" Type="int" Nullable="false" />
+          <Property Name="returned" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Edition">
+          <Key>
+            <PropertyRef Name="edition_id" />
+          </Key>
+          <Property Name="edition_id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="segment_id" Type="bigint" />
+          <Property Name="edition_no" Type="smallint" Nullable="false" />
+          <Property Name="publication_quantity" Type="smallint" Nullable="false" />
+          <Property Name="publication_pages" Type="smallint" Nullable="false" />
+          <Property Name="cd_quantity" Type="smallint" />
+          <Property Name="registration_date_type" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="registration_year" Type="int" Nullable="false" />
+          <Property Name="registration_month" Type="int" Nullable="false" />
+          <Property Name="registration_day" Type="int" Nullable="false" />
+          <Property Name="publication_date_type" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="publication_year" Type="int" Nullable="false" />
+          <Property Name="publication_month" Type="int" />
+          <Property Name="publication_day" Type="int" />
+          <Property Name="cupboard_no" Type="smallint" Nullable="false" />
+          <Property Name="cell_no" Type="smallint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MonographAndThesis">
+          <Key>
+            <PropertyRef Name="monograph_thesis_id" />
+          </Key>
+          <Property Name="monograph_thesis_id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="s_no" Type="bigint" />
+          <Property Name="supervisor_firstname" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="supervisor_lastname" Type="nvarchar" MaxLength="250" />
+          <Property Name="student_registration_year" Type="nvarchar" MaxLength="8" />
+          <Property Name="student_graduation_year" Type="nvarchar" MaxLength="8" />
+          <Property Name="defence_data" Type="date" />
+          <Property Name="mark" Type="nvarchar" MaxLength="6" />
+          <Property Name="graduation_period" Type="nvarchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Newspaper">
+          <Key>
+            <PropertyRef Name="newspaper_id" />
+          </Key>
+          <Property Name="newspaper_id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="newspaper_name" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="publisher_name" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="quantity" Type="int" Nullable="false" />
+          <Property Name="date_type" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="publication_date" Type="date" Nullable="false" />
+          <Property Name="registration_date" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Person">
+          <Key>
+            <PropertyRef Name="person_id" />
+          </Key>
+          <Property Name="person_id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="person_idCard" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="person_firstname" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="person_lastname" Type="nvarchar" MaxLength="250" />
+          <Property Name="person_father_name" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="person_state" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="gender" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="university" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="faculty" Type="nvarchar" MaxLength="250" />
+          <Property Name="department" Type="nvarchar" MaxLength="250" />
+          <Property Name="phone_number" Type="nvarchar" MaxLength="26" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="Publication">
+          <Key>
+            <PropertyRef Name="s_no" />
+          </Key>
+          <Property Name="s_no" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ISBN" Type="nvarchar" MaxLength="100" />
+          <Property Name="DDC_classificationNo" Type="nvarchar" MaxLength="100" />
+          <Property Name="LLC_classificationNo" Type="nvarchar" MaxLength="100" />
+          <Property Name="publication_type" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="publication_name" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="translator" Type="nvarchar" MaxLength="250" />
+          <Property Name="branch_id" Type="tinyint" Nullable="false" />
+          <Property Name="permission" Type="bit" Nullable="false" />
+          <Property Name="publication_language" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="publication_description" Type="nvarchar" MaxLength="1000" />
+        </EntityType>
+        <EntityType Name="Segment">
+          <Key>
+            <PropertyRef Name="segment_id" />
+          </Key>
+          <Property Name="segment_id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="s_no" Type="bigint" />
+          <Property Name="segment_no" Type="smallint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Student">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="person_id" Type="bigint" />
+          <Property Name="semester" Type="smallint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Thesis">
+          <Key>
+            <PropertyRef Name="thesis_id" />
+          </Key>
+          <Property Name="thesis_id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="s_no" Type="bigint" Nullable="false" />
+          <Property Name="internal_conflict" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="external_conflict" Type="nvarchar" MaxLength="250" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="user_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="email" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="username" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="password" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="image" Type="image" />
+          <Property Name="level" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="status" Type="nvarchar" MaxLength="250" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'LibraryMIS.dbo.BranchVoidPublication' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="BranchVoidPublication">
+          <Property Name="publication_type" Type="nvarchar" MaxLength="8" />
+          <Property Name="publication_quantity" Type="int" />
+        </EntityType>-->
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'LibraryMIS.dbo.NewspaperReport' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="NewspaperReport">
+          <Key>
+            <PropertyRef Name="newspaper_name" />
+            <PropertyRef Name="publisher_name" />
+          </Key>
+          <Property Name="newspaper_name" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="publisher_name" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="quantity" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'LibraryMIS.dbo.NotReturnedBook' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="NotReturnedBook">
+          <Key>
+            <PropertyRef Name="person_name" />
+            <PropertyRef Name="university" />
+            <PropertyRef Name="phone_number" />
+            <PropertyRef Name="publication_name" />
+            <PropertyRef Name="issue_date" />
+          </Key>
+          <Property Name="person_name" Type="nvarchar" MaxLength="501" Nullable="false" />
+          <Property Name="university" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="faculty" Type="nvarchar" MaxLength="250" />
+          <Property Name="phone_number" Type="nvarchar" MaxLength="26" Nullable="false" />
+          <Property Name="publication_name" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="issue_date" Type="date" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'LibraryMIS.dbo.TotalPublication' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="TotalPublication">
+          <Key>
+            <PropertyRef Name="publication_name" />
+          </Key>
+          <Property Name="publication_name" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="publicationType" Type="nvarchar" MaxLength="8" />
+          <Property Name="publication_quantity" Type="int" />
+        </EntityType>
+        <Association Name="author_cascade">
+          <End Role="Author" Type="Self.Author" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="BookAuthor" Type="Self.BookAuthor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Author">
+              <PropertyRef Name="author_id" />
+            </Principal>
+            <Dependent Role="BookAuthor">
+              <PropertyRef Name="author_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="author_fk">
+          <End Role="Author" Type="Self.Author" Multiplicity="1" />
+          <End Role="BookAuthor" Type="Self.BookAuthor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Author">
+              <PropertyRef Name="author_id" />
+            </Principal>
+            <Dependent Role="BookAuthor">
+              <PropertyRef Name="author_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="branch_publication_cascade">
+          <End Role="Branch" Type="Self.Branch" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Publication" Type="Self.Publication" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Branch">
+              <PropertyRef Name="branch_id" />
+            </Principal>
+            <Dependent Role="Publication">
+              <PropertyRef Name="branch_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="branch_publication_fk">
+          <End Role="Branch" Type="Self.Branch" Multiplicity="1" />
+          <End Role="Publication" Type="Self.Publication" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Branch">
+              <PropertyRef Name="branch_id" />
+            </Principal>
+            <Dependent Role="Publication">
+              <PropertyRef Name="branch_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="EDITION_ACTIVITY_FK">
+          <End Role="Edition" Type="Self.Edition" Multiplicity="0..1" />
+          <End Role="Activity" Type="Self.Activity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Edition">
+              <PropertyRef Name="edition_id" />
+            </Principal>
+            <Dependent Role="Activity">
+              <PropertyRef Name="edition_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Edition_bookAndMagazineMoreDescription_cascade">
+          <End Role="Edition" Type="Self.Edition" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="BookAndmagazine" Type="Self.BookAndmagazine" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Edition">
+              <PropertyRef Name="edition_id" />
+            </Principal>
+            <Dependent Role="BookAndmagazine">
+              <PropertyRef Name="edition_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Edition_bookAndMagazineMoreDescription_fk">
+          <End Role="Edition" Type="Self.Edition" Multiplicity="0..1" />
+          <End Role="BookAndmagazine" Type="Self.BookAndmagazine" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Edition">
+              <PropertyRef Name="edition_id" />
+            </Principal>
+            <Dependent Role="BookAndmagazine">
+              <PropertyRef Name="edition_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="edition_dealing_fk">
+          <End Role="Edition" Type="Self.Edition" Multiplicity="1" />
+          <End Role="Dealing" Type="Self.Dealing" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Edition">
+              <PropertyRef Name="edition_id" />
+            </Principal>
+            <Dependent Role="Dealing">
+              <PropertyRef Name="edition_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="edition_id_activity_cascade">
+          <End Role="Edition" Type="Self.Edition" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Activity" Type="Self.Activity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Edition">
+              <PropertyRef Name="edition_id" />
+            </Principal>
+            <Dependent Role="Activity">
+              <PropertyRef Name="edition_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="edition_id_cascade">
+          <End Role="Edition" Type="Self.Edition" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Dealing" Type="Self.Dealing" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Edition">
+              <PropertyRef Name="edition_id" />
+            </Principal>
+            <Dependent Role="Dealing">
+              <PropertyRef Name="edition_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Student_Person">
+          <End Role="Person" Type="Self.Person" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Student" Type="Self.Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="person_id" />
+            </Principal>
+            <Dependent Role="Student">
+              <PropertyRef Name="person_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PERSON_ACTIVITY_FK">
+          <End Role="Person" Type="Self.Person" Multiplicity="0..1" />
+          <End Role="Activity" Type="Self.Activity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="person_id" />
+            </Principal>
+            <Dependent Role="Activity">
+              <PropertyRef Name="person_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="person_dealing_fk">
+          <End Role="Person" Type="Self.Person" Multiplicity="1" />
+          <End Role="Dealing" Type="Self.Dealing" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="person_id" />
+            </Principal>
+            <Dependent Role="Dealing">
+              <PropertyRef Name="person_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="person_id_activity_cascade">
+          <End Role="Person" Type="Self.Person" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Activity" Type="Self.Activity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="person_id" />
+            </Principal>
+            <Dependent Role="Activity">
+              <PropertyRef Name="person_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="person_id_cascade">
+          <End Role="Person" Type="Self.Person" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Dealing" Type="Self.Dealing" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="person_id" />
+            </Principal>
+            <Dependent Role="Dealing">
+              <PropertyRef Name="person_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="publication_book_cascade">
+          <End Role="Publication" Type="Self.Publication" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Book" Type="Self.Book" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Publication">
+              <PropertyRef Name="s_no" />
+            </Principal>
+            <Dependent Role="Book">
+              <PropertyRef Name="s_no" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="publication_book_fk">
+          <End Role="Publication" Type="Self.Publication" Multiplicity="1" />
+          <End Role="Book" Type="Self.Book" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Publication">
+              <PropertyRef Name="s_no" />
+            </Principal>
+            <Dependent Role="Book">
+              <PropertyRef Name="s_no" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="publication_monographAndThesis_cascade">
+          <End Role="Publication" Type="Self.Publication" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="MonographAndThesis" Type="Self.MonographAndThesis" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Publication">
+              <PropertyRef Name="s_no" />
+            </Principal>
+            <Dependent Role="MonographAndThesis">
+              <PropertyRef Name="s_no" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="publication_monographAndThesis_fk">
+          <End Role="Publication" Type="Self.Publication" Multiplicity="0..1" />
+          <End Role="MonographAndThesis" Type="Self.MonographAndThesis" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Publication">
+              <PropertyRef Name="s_no" />
+            </Principal>
+            <Dependent Role="MonographAndThesis">
+              <PropertyRef Name="s_no" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="publication_segment_cascade">
+          <End Role="Publication" Type="Self.Publication" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Segment" Type="Self.Segment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Publication">
+              <PropertyRef Name="s_no" />
+            </Principal>
+            <Dependent Role="Segment">
+              <PropertyRef Name="s_no" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="publication_segment_fk">
+          <End Role="Publication" Type="Self.Publication" Multiplicity="0..1" />
+          <End Role="Segment" Type="Self.Segment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Publication">
+              <PropertyRef Name="s_no" />
+            </Principal>
+            <Dependent Role="Segment">
+              <PropertyRef Name="s_no" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="publication_thesis_cascade">
+          <End Role="Publication" Type="Self.Publication" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Thesis" Type="Self.Thesis" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Publication">
+              <PropertyRef Name="s_no" />
+            </Principal>
+            <Dependent Role="Thesis">
+              <PropertyRef Name="s_no" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="publication_thesis_fk">
+          <End Role="Publication" Type="Self.Publication" Multiplicity="1" />
+          <End Role="Thesis" Type="Self.Thesis" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Publication">
+              <PropertyRef Name="s_no" />
+            </Principal>
+            <Dependent Role="Thesis">
+              <PropertyRef Name="s_no" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="segment_edition_cascade">
+          <End Role="Segment" Type="Self.Segment" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Edition" Type="Self.Edition" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Segment">
+              <PropertyRef Name="segment_id" />
+            </Principal>
+            <Dependent Role="Edition">
+              <PropertyRef Name="segment_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="segment_edition_fk">
+          <End Role="Segment" Type="Self.Segment" Multiplicity="0..1" />
+          <End Role="Edition" Type="Self.Edition" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Segment">
+              <PropertyRef Name="segment_id" />
+            </Principal>
+            <Dependent Role="Edition">
+              <PropertyRef Name="segment_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="serialNumber_cascade">
+          <End Role="Publication" Type="Self.Publication" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="BookAuthor" Type="Self.BookAuthor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Publication">
+              <PropertyRef Name="s_no" />
+            </Principal>
+            <Dependent Role="BookAuthor">
+              <PropertyRef Name="s_no" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="serialNumber_fk">
+          <End Role="Publication" Type="Self.Publication" Multiplicity="1" />
+          <End Role="BookAuthor" Type="Self.BookAuthor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Publication">
+              <PropertyRef Name="s_no" />
+            </Principal>
+            <Dependent Role="BookAuthor">
+              <PropertyRef Name="s_no" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="USER_ACTIVITY_FK">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Activity" Type="Self.Activity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="Activity">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="LibraryMISModelStoreContainer">
+          <EntitySet Name="Author" EntityType="Self.Author" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Book" EntityType="Self.Book" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BookAndmagazine" EntityType="Self.BookAndmagazine" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BookAuthor" EntityType="Self.BookAuthor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Branch" EntityType="Self.Branch" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Dealing" EntityType="Self.Dealing" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Edition" EntityType="Self.Edition" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MonographAndThesis" EntityType="Self.MonographAndThesis" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Newspaper" EntityType="Self.Newspaper" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Person" EntityType="Self.Person" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Publication" EntityType="Self.Publication" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Segment" EntityType="Self.Segment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Thesis" EntityType="Self.Thesis" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Activity" EntityType="Self.Activity" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Activity].[id] AS [id], 
+    [Activity].[user_id] AS [user_id], 
+    [Activity].[activity_type] AS [activity_type], 
+    [Activity].[date_time] AS [date_time], 
+    [Activity].[person_id] AS [person_id], 
+    [Activity].[edition_id] AS [edition_id]
+    FROM [dbo].[Activity] AS [Activity]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="NewspaperReport" EntityType="Self.NewspaperReport" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [NewspaperReport].[newspaper_name] AS [newspaper_name], 
+    [NewspaperReport].[publisher_name] AS [publisher_name], 
+    [NewspaperReport].[quantity] AS [quantity]
+    FROM [dbo].[NewspaperReport] AS [NewspaperReport]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="NotReturnedBook" EntityType="Self.NotReturnedBook" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [NotReturnedBook].[person_name] AS [person_name], 
+    [NotReturnedBook].[university] AS [university], 
+    [NotReturnedBook].[faculty] AS [faculty], 
+    [NotReturnedBook].[phone_number] AS [phone_number], 
+    [NotReturnedBook].[publication_name] AS [publication_name], 
+    [NotReturnedBook].[issue_date] AS [issue_date]
+    FROM [dbo].[NotReturnedBook] AS [NotReturnedBook]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="TotalPublication" EntityType="Self.TotalPublication" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [TotalPublication].[publication_name] AS [publication_name], 
+    [TotalPublication].[publicationType] AS [publicationType], 
+    [TotalPublication].[publication_quantity] AS [publication_quantity]
+    FROM [dbo].[TotalPublication] AS [TotalPublication]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="author_cascade" Association="Self.author_cascade">
+            <End Role="Author" EntitySet="Author" />
+            <End Role="BookAuthor" EntitySet="BookAuthor" />
+          </AssociationSet>
+          <AssociationSet Name="author_fk" Association="Self.author_fk">
+            <End Role="Author" EntitySet="Author" />
+            <End Role="BookAuthor" EntitySet="BookAuthor" />
+          </AssociationSet>
+          <AssociationSet Name="branch_publication_cascade" Association="Self.branch_publication_cascade">
+            <End Role="Branch" EntitySet="Branch" />
+            <End Role="Publication" EntitySet="Publication" />
+          </AssociationSet>
+          <AssociationSet Name="branch_publication_fk" Association="Self.branch_publication_fk">
+            <End Role="Branch" EntitySet="Branch" />
+            <End Role="Publication" EntitySet="Publication" />
+          </AssociationSet>
+          <AssociationSet Name="EDITION_ACTIVITY_FK" Association="Self.EDITION_ACTIVITY_FK">
+            <End Role="Edition" EntitySet="Edition" />
+            <End Role="Activity" EntitySet="Activity" />
+          </AssociationSet>
+          <AssociationSet Name="Edition_bookAndMagazineMoreDescription_cascade" Association="Self.Edition_bookAndMagazineMoreDescription_cascade">
+            <End Role="Edition" EntitySet="Edition" />
+            <End Role="BookAndmagazine" EntitySet="BookAndmagazine" />
+          </AssociationSet>
+          <AssociationSet Name="Edition_bookAndMagazineMoreDescription_fk" Association="Self.Edition_bookAndMagazineMoreDescription_fk">
+            <End Role="Edition" EntitySet="Edition" />
+            <End Role="BookAndmagazine" EntitySet="BookAndmagazine" />
+          </AssociationSet>
+          <AssociationSet Name="edition_dealing_fk" Association="Self.edition_dealing_fk">
+            <End Role="Edition" EntitySet="Edition" />
+            <End Role="Dealing" EntitySet="Dealing" />
+          </AssociationSet>
+          <AssociationSet Name="edition_id_activity_cascade" Association="Self.edition_id_activity_cascade">
+            <End Role="Edition" EntitySet="Edition" />
+            <End Role="Activity" EntitySet="Activity" />
+          </AssociationSet>
+          <AssociationSet Name="edition_id_cascade" Association="Self.edition_id_cascade">
+            <End Role="Edition" EntitySet="Edition" />
+            <End Role="Dealing" EntitySet="Dealing" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Student_Person" Association="Self.FK_Student_Person">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="Student" EntitySet="Student" />
+          </AssociationSet>
+          <AssociationSet Name="PERSON_ACTIVITY_FK" Association="Self.PERSON_ACTIVITY_FK">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="Activity" EntitySet="Activity" />
+          </AssociationSet>
+          <AssociationSet Name="person_dealing_fk" Association="Self.person_dealing_fk">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="Dealing" EntitySet="Dealing" />
+          </AssociationSet>
+          <AssociationSet Name="person_id_activity_cascade" Association="Self.person_id_activity_cascade">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="Activity" EntitySet="Activity" />
+          </AssociationSet>
+          <AssociationSet Name="person_id_cascade" Association="Self.person_id_cascade">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="Dealing" EntitySet="Dealing" />
+          </AssociationSet>
+          <AssociationSet Name="publication_book_cascade" Association="Self.publication_book_cascade">
+            <End Role="Publication" EntitySet="Publication" />
+            <End Role="Book" EntitySet="Book" />
+          </AssociationSet>
+          <AssociationSet Name="publication_book_fk" Association="Self.publication_book_fk">
+            <End Role="Publication" EntitySet="Publication" />
+            <End Role="Book" EntitySet="Book" />
+          </AssociationSet>
+          <AssociationSet Name="publication_monographAndThesis_cascade" Association="Self.publication_monographAndThesis_cascade">
+            <End Role="Publication" EntitySet="Publication" />
+            <End Role="MonographAndThesis" EntitySet="MonographAndThesis" />
+          </AssociationSet>
+          <AssociationSet Name="publication_monographAndThesis_fk" Association="Self.publication_monographAndThesis_fk">
+            <End Role="Publication" EntitySet="Publication" />
+            <End Role="MonographAndThesis" EntitySet="MonographAndThesis" />
+          </AssociationSet>
+          <AssociationSet Name="publication_segment_cascade" Association="Self.publication_segment_cascade">
+            <End Role="Publication" EntitySet="Publication" />
+            <End Role="Segment" EntitySet="Segment" />
+          </AssociationSet>
+          <AssociationSet Name="publication_segment_fk" Association="Self.publication_segment_fk">
+            <End Role="Publication" EntitySet="Publication" />
+            <End Role="Segment" EntitySet="Segment" />
+          </AssociationSet>
+          <AssociationSet Name="publication_thesis_cascade" Association="Self.publication_thesis_cascade">
+            <End Role="Publication" EntitySet="Publication" />
+            <End Role="Thesis" EntitySet="Thesis" />
+          </AssociationSet>
+          <AssociationSet Name="publication_thesis_fk" Association="Self.publication_thesis_fk">
+            <End Role="Publication" EntitySet="Publication" />
+            <End Role="Thesis" EntitySet="Thesis" />
+          </AssociationSet>
+          <AssociationSet Name="segment_edition_cascade" Association="Self.segment_edition_cascade">
+            <End Role="Segment" EntitySet="Segment" />
+            <End Role="Edition" EntitySet="Edition" />
+          </AssociationSet>
+          <AssociationSet Name="segment_edition_fk" Association="Self.segment_edition_fk">
+            <End Role="Segment" EntitySet="Segment" />
+            <End Role="Edition" EntitySet="Edition" />
+          </AssociationSet>
+          <AssociationSet Name="serialNumber_cascade" Association="Self.serialNumber_cascade">
+            <End Role="Publication" EntitySet="Publication" />
+            <End Role="BookAuthor" EntitySet="BookAuthor" />
+          </AssociationSet>
+          <AssociationSet Name="serialNumber_fk" Association="Self.serialNumber_fk">
+            <End Role="Publication" EntitySet="Publication" />
+            <End Role="BookAuthor" EntitySet="BookAuthor" />
+          </AssociationSet>
+          <AssociationSet Name="USER_ACTIVITY_FK" Association="Self.USER_ACTIVITY_FK">
+            <End Role="User" EntitySet="User" />
+            <End Role="Activity" EntitySet="Activity" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="LibraryMISModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Author">
+          <Key>
+            <PropertyRef Name="author_id" />
+          </Key>
+          <Property Name="author_id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="author_firstname" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="author_lastname" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="author_description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="BookAuthors" Relationship="Self.author_cascade" FromRole="Author" ToRole="BookAuthor" />
+          <NavigationProperty Name="BookAuthors1" Relationship="Self.author_fk" FromRole="Author" ToRole="BookAuthor" />
+        </EntityType>
+        <EntityType Name="Book">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="s_no" Type="Int64" Nullable="false" />
+          <Property Name="book_type" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Publication" Relationship="Self.publication_book_cascade" FromRole="Book" ToRole="Publication" />
+          <NavigationProperty Name="Publication1" Relationship="Self.publication_book_fk" FromRole="Book" ToRole="Publication" />
+        </EntityType>
+        <EntityType Name="BookAndmagazine">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="edition_id" Type="Int64" />
+          <Property Name="publication_no" Type="Int16" Nullable="false" />
+          <Property Name="publication_place" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="publisher_name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Edition" Relationship="Self.Edition_bookAndMagazineMoreDescription_cascade" FromRole="BookAndmagazine" ToRole="Edition" />
+          <NavigationProperty Name="Edition1" Relationship="Self.Edition_bookAndMagazineMoreDescription_fk" FromRole="BookAndmagazine" ToRole="Edition" />
+        </EntityType>
+        <EntityType Name="BookAuthor">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="author_id" Type="Int64" Nullable="false" />
+          <Property Name="s_no" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Author" Relationship="Self.author_cascade" FromRole="BookAuthor" ToRole="Author" />
+          <NavigationProperty Name="Author1" Relationship="Self.author_fk" FromRole="BookAuthor" ToRole="Author" />
+          <NavigationProperty Name="Publication" Relationship="Self.serialNumber_cascade" FromRole="BookAuthor" ToRole="Publication" />
+          <NavigationProperty Name="Publication1" Relationship="Self.serialNumber_fk" FromRole="BookAuthor" ToRole="Publication" />
+        </EntityType>
+        <EntityType Name="Branch">
+          <Key>
+            <PropertyRef Name="branch_id" />
+          </Key>
+          <Property Name="branch_id" Type="Byte" Nullable="false" />
+          <Property Name="branch_name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Publications" Relationship="Self.branch_publication_cascade" FromRole="Branch" ToRole="Publication" />
+          <NavigationProperty Name="Publications1" Relationship="Self.branch_publication_fk" FromRole="Branch" ToRole="Publication" />
+        </EntityType>
+        <EntityType Name="Dealing">
+          <Key>
+            <PropertyRef Name="dealing_id" />
+          </Key>
+          <Property Name="dealing_id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="person_id" Type="Int64" Nullable="false" />
+          <Property Name="edition_id" Type="Int64" Nullable="false" />
+          <Property Name="issue_date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="return_date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="paid_money" Type="Int32" Nullable="false" />
+          <Property Name="returned" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Edition" Relationship="Self.edition_dealing_fk" FromRole="Dealing" ToRole="Edition" />
+          <NavigationProperty Name="Edition1" Relationship="Self.edition_id_cascade" FromRole="Dealing" ToRole="Edition" />
+          <NavigationProperty Name="Person" Relationship="Self.person_dealing_fk" FromRole="Dealing" ToRole="Person" />
+          <NavigationProperty Name="Person1" Relationship="Self.person_id_cascade" FromRole="Dealing" ToRole="Person" />
+        </EntityType>
+        <EntityType Name="Edition">
+          <Key>
+            <PropertyRef Name="edition_id" />
+          </Key>
+          <Property Name="edition_id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="segment_id" Type="Int64" />
+          <Property Name="edition_no" Type="Int16" Nullable="false" />
+          <Property Name="publication_quantity" Type="Int16" Nullable="false" />
+          <Property Name="publication_pages" Type="Int16" Nullable="false" />
+          <Property Name="cd_quantity" Type="Int16" />
+          <Property Name="registration_date_type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="registration_year" Type="Int32" Nullable="false" />
+          <Property Name="registration_month" Type="Int32" Nullable="false" />
+          <Property Name="registration_day" Type="Int32" Nullable="false" />
+          <Property Name="publication_date_type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="publication_year" Type="Int32" Nullable="false" />
+          <Property Name="publication_month" Type="Int32" />
+          <Property Name="publication_day" Type="Int32" />
+          <Property Name="cupboard_no" Type="Int16" Nullable="false" />
+          <Property Name="cell_no" Type="Int16" Nullable="false" />
+          <NavigationProperty Name="BookAndmagazines" Relationship="Self.Edition_bookAndMagazineMoreDescription_cascade" FromRole="Edition" ToRole="BookAndmagazine" />
+          <NavigationProperty Name="BookAndmagazines1" Relationship="Self.Edition_bookAndMagazineMoreDescription_fk" FromRole="Edition" ToRole="BookAndmagazine" />
+          <NavigationProperty Name="Dealings" Relationship="Self.edition_dealing_fk" FromRole="Edition" ToRole="Dealing" />
+          <NavigationProperty Name="Dealings1" Relationship="Self.edition_id_cascade" FromRole="Edition" ToRole="Dealing" />
+          <NavigationProperty Name="Activities" Relationship="Self.EDITION_ACTIVITY_FK" FromRole="Edition" ToRole="Activity" />
+          <NavigationProperty Name="Activities1" Relationship="Self.edition_id_activity_cascade" FromRole="Edition" ToRole="Activity" />
+          <NavigationProperty Name="Segment" Relationship="Self.segment_edition_cascade" FromRole="Edition" ToRole="Segment" />
+          <NavigationProperty Name="Segment1" Relationship="Self.segment_edition_fk" FromRole="Edition" ToRole="Segment" />
+        </EntityType>
+        <EntityType Name="MonographAndThesi">
+          <Key>
+            <PropertyRef Name="monograph_thesis_id" />
+          </Key>
+          <Property Name="monograph_thesis_id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="s_no" Type="Int64" />
+          <Property Name="supervisor_firstname" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="supervisor_lastname" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="student_registration_year" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+          <Property Name="student_graduation_year" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+          <Property Name="defence_data" Type="DateTime" Precision="0" />
+          <Property Name="mark" Type="String" MaxLength="6" FixedLength="false" Unicode="true" />
+          <Property Name="graduation_period" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Publication" Relationship="Self.publication_monographAndThesis_cascade" FromRole="MonographAndThesis" ToRole="Publication" />
+          <NavigationProperty Name="Publication1" Relationship="Self.publication_monographAndThesis_fk" FromRole="MonographAndThesis" ToRole="Publication" />
+        </EntityType>
+        <EntityType Name="Newspaper">
+          <Key>
+            <PropertyRef Name="newspaper_id" />
+          </Key>
+          <Property Name="newspaper_id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="newspaper_name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="publisher_name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="quantity" Type="Int32" Nullable="false" />
+          <Property Name="date_type" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="publication_date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="registration_date" Type="DateTime" Nullable="false" Precision="0" />
+        </EntityType>
+        <EntityType Name="Person">
+          <Key>
+            <PropertyRef Name="person_id" />
+          </Key>
+          <Property Name="person_id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="person_idCard" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="person_firstname" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="person_lastname" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="person_father_name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="person_state" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="gender" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="university" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="faculty" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="department" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="phone_number" Type="String" MaxLength="26" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Dealings" Relationship="Self.person_dealing_fk" FromRole="Person" ToRole="Dealing" />
+          <NavigationProperty Name="Dealings1" Relationship="Self.person_id_cascade" FromRole="Person" ToRole="Dealing" />
+          <NavigationProperty Name="Students" Relationship="Self.FK_Student_Person" FromRole="Person" ToRole="Student" />
+          <NavigationProperty Name="Activities" Relationship="Self.PERSON_ACTIVITY_FK" FromRole="Person" ToRole="Activity" />
+          <NavigationProperty Name="Activities1" Relationship="Self.person_id_activity_cascade" FromRole="Person" ToRole="Activity" />
+        </EntityType>
+        <EntityType Name="Publication">
+          <Key>
+            <PropertyRef Name="s_no" />
+          </Key>
+          <Property Name="s_no" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ISBN" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DDC_classificationNo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="LLC_classificationNo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="publication_type" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="publication_name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="translator" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="branch_id" Type="Byte" Nullable="false" />
+          <Property Name="permission" Type="Boolean" Nullable="false" />
+          <Property Name="publication_language" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="publication_description" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Books" Relationship="Self.publication_book_cascade" FromRole="Publication" ToRole="Book" />
+          <NavigationProperty Name="Books1" Relationship="Self.publication_book_fk" FromRole="Publication" ToRole="Book" />
+          <NavigationProperty Name="BookAuthors" Relationship="Self.serialNumber_cascade" FromRole="Publication" ToRole="BookAuthor" />
+          <NavigationProperty Name="BookAuthors1" Relationship="Self.serialNumber_fk" FromRole="Publication" ToRole="BookAuthor" />
+          <NavigationProperty Name="Branch" Relationship="Self.branch_publication_cascade" FromRole="Publication" ToRole="Branch" />
+          <NavigationProperty Name="Branch1" Relationship="Self.branch_publication_fk" FromRole="Publication" ToRole="Branch" />
+          <NavigationProperty Name="MonographAndThesis" Relationship="Self.publication_monographAndThesis_cascade" FromRole="Publication" ToRole="MonographAndThesis" />
+          <NavigationProperty Name="MonographAndThesis1" Relationship="Self.publication_monographAndThesis_fk" FromRole="Publication" ToRole="MonographAndThesis" />
+          <NavigationProperty Name="Segments" Relationship="Self.publication_segment_cascade" FromRole="Publication" ToRole="Segment" />
+          <NavigationProperty Name="Segments1" Relationship="Self.publication_segment_fk" FromRole="Publication" ToRole="Segment" />
+          <NavigationProperty Name="Theses" Relationship="Self.publication_thesis_cascade" FromRole="Publication" ToRole="Thesis" />
+          <NavigationProperty Name="Theses1" Relationship="Self.publication_thesis_fk" FromRole="Publication" ToRole="Thesis" />
+        </EntityType>
+        <EntityType Name="Segment">
+          <Key>
+            <PropertyRef Name="segment_id" />
+          </Key>
+          <Property Name="segment_id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="s_no" Type="Int64" />
+          <Property Name="segment_no" Type="Int16" Nullable="false" />
+          <NavigationProperty Name="Editions" Relationship="Self.segment_edition_cascade" FromRole="Segment" ToRole="Edition" />
+          <NavigationProperty Name="Editions1" Relationship="Self.segment_edition_fk" FromRole="Segment" ToRole="Edition" />
+          <NavigationProperty Name="Publication" Relationship="Self.publication_segment_cascade" FromRole="Segment" ToRole="Publication" />
+          <NavigationProperty Name="Publication1" Relationship="Self.publication_segment_fk" FromRole="Segment" ToRole="Publication" />
+        </EntityType>
+        <EntityType Name="Student">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="person_id" Type="Int64" />
+          <Property Name="semester" Type="Int16" Nullable="false" />
+          <NavigationProperty Name="Person" Relationship="Self.FK_Student_Person" FromRole="Student" ToRole="Person" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Thesis">
+          <Key>
+            <PropertyRef Name="thesis_id" />
+          </Key>
+          <Property Name="thesis_id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="s_no" Type="Int64" Nullable="false" />
+          <Property Name="internal_conflict" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="external_conflict" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Publication" Relationship="Self.publication_thesis_cascade" FromRole="Thesis" ToRole="Publication" />
+          <NavigationProperty Name="Publication1" Relationship="Self.publication_thesis_fk" FromRole="Thesis" ToRole="Publication" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="user_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="email" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="username" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="image" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="level" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="status" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Activities" Relationship="Self.USER_ACTIVITY_FK" FromRole="User" ToRole="Activity" />
+        </EntityType>
+        <EntityType Name="Activity">
+          <Key>
+            <PropertyRef Name="user_id" />
+            <PropertyRef Name="activity_type" />
+            <PropertyRef Name="date_time" />
+          </Key>
+          <Property Name="id" Type="Int64" />
+          <Property Name="user_id" Type="Int32" Nullable="false" />
+          <Property Name="activity_type" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="date_time" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="person_id" Type="Int64" />
+          <Property Name="edition_id" Type="Int64" />
+          <NavigationProperty Name="Edition" Relationship="Self.EDITION_ACTIVITY_FK" FromRole="Activity" ToRole="Edition" />
+          <NavigationProperty Name="Edition1" Relationship="Self.edition_id_activity_cascade" FromRole="Activity" ToRole="Edition" />
+          <NavigationProperty Name="Person" Relationship="Self.PERSON_ACTIVITY_FK" FromRole="Activity" ToRole="Person" />
+          <NavigationProperty Name="Person1" Relationship="Self.person_id_activity_cascade" FromRole="Activity" ToRole="Person" />
+          <NavigationProperty Name="User" Relationship="Self.USER_ACTIVITY_FK" FromRole="Activity" ToRole="User" />
+        </EntityType>
+        <EntityType Name="NewspaperReport">
+          <Key>
+            <PropertyRef Name="newspaper_name" />
+            <PropertyRef Name="publisher_name" />
+          </Key>
+          <Property Name="newspaper_name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="publisher_name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="quantity" Type="Int32" />
+        </EntityType>
+        <EntityType Name="NotReturnedBook">
+          <Key>
+            <PropertyRef Name="person_name" />
+            <PropertyRef Name="university" />
+            <PropertyRef Name="phone_number" />
+            <PropertyRef Name="publication_name" />
+            <PropertyRef Name="issue_date" />
+          </Key>
+          <Property Name="person_name" Type="String" MaxLength="501" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="university" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="faculty" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="phone_number" Type="String" MaxLength="26" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="publication_name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="issue_date" Type="DateTime" Nullable="false" Precision="0" />
+        </EntityType>
+        <EntityType Name="TotalPublication">
+          <Key>
+            <PropertyRef Name="publication_name" />
+          </Key>
+          <Property Name="publication_name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="publicationType" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+          <Property Name="publication_quantity" Type="Int32" />
+        </EntityType>
+        <Association Name="author_cascade">
+          <End Role="Author" Type="Self.Author" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="BookAuthor" Type="Self.BookAuthor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Author">
+              <PropertyRef Name="author_id" />
+            </Principal>
+            <Dependent Role="BookAuthor">
+              <PropertyRef Name="author_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="author_fk">
+          <End Role="Author" Type="Self.Author" Multiplicity="1" />
+          <End Role="BookAuthor" Type="Self.BookAuthor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Author">
+              <PropertyRef Name="author_id" />
+            </Principal>
+            <Dependent Role="BookAuthor">
+              <PropertyRef Name="author_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="publication_book_cascade">
+          <End Role="Publication" Type="Self.Publication" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Book" Type="Self.Book" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Publication">
+              <PropertyRef Name="s_no" />
+            </Principal>
+            <Dependent Role="Book">
+              <PropertyRef Name="s_no" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="publication_book_fk">
+          <End Role="Publication" Type="Self.Publication" Multiplicity="1" />
+          <End Role="Book" Type="Self.Book" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Publication">
+              <PropertyRef Name="s_no" />
+            </Principal>
+            <Dependent Role="Book">
+              <PropertyRef Name="s_no" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Edition_bookAndMagazineMoreDescription_cascade">
+          <End Role="Edition" Type="Self.Edition" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="BookAndmagazine" Type="Self.BookAndmagazine" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Edition">
+              <PropertyRef Name="edition_id" />
+            </Principal>
+            <Dependent Role="BookAndmagazine">
+              <PropertyRef Name="edition_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Edition_bookAndMagazineMoreDescription_fk">
+          <End Role="Edition" Type="Self.Edition" Multiplicity="0..1" />
+          <End Role="BookAndmagazine" Type="Self.BookAndmagazine" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Edition">
+              <PropertyRef Name="edition_id" />
+            </Principal>
+            <Dependent Role="BookAndmagazine">
+              <PropertyRef Name="edition_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="serialNumber_cascade">
+          <End Role="Publication" Type="Self.Publication" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="BookAuthor" Type="Self.BookAuthor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Publication">
+              <PropertyRef Name="s_no" />
+            </Principal>
+            <Dependent Role="BookAuthor">
+              <PropertyRef Name="s_no" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="serialNumber_fk">
+          <End Role="Publication" Type="Self.Publication" Multiplicity="1" />
+          <End Role="BookAuthor" Type="Self.BookAuthor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Publication">
+              <PropertyRef Name="s_no" />
+            </Principal>
+            <Dependent Role="BookAuthor">
+              <PropertyRef Name="s_no" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="branch_publication_cascade">
+          <End Role="Branch" Type="Self.Branch" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Publication" Type="Self.Publication" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Branch">
+              <PropertyRef Name="branch_id" />
+            </Principal>
+            <Dependent Role="Publication">
+              <PropertyRef Name="branch_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="branch_publication_fk">
+          <End Role="Branch" Type="Self.Branch" Multiplicity="1" />
+          <End Role="Publication" Type="Self.Publication" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Branch">
+              <PropertyRef Name="branch_id" />
+            </Principal>
+            <Dependent Role="Publication">
+              <PropertyRef Name="branch_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="edition_dealing_fk">
+          <End Role="Edition" Type="Self.Edition" Multiplicity="1" />
+          <End Role="Dealing" Type="Self.Dealing" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Edition">
+              <PropertyRef Name="edition_id" />
+            </Principal>
+            <Dependent Role="Dealing">
+              <PropertyRef Name="edition_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="edition_id_cascade">
+          <End Role="Edition" Type="Self.Edition" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Dealing" Type="Self.Dealing" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Edition">
+              <PropertyRef Name="edition_id" />
+            </Principal>
+            <Dependent Role="Dealing">
+              <PropertyRef Name="edition_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="person_dealing_fk">
+          <End Role="Person" Type="Self.Person" Multiplicity="1" />
+          <End Role="Dealing" Type="Self.Dealing" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="person_id" />
+            </Principal>
+            <Dependent Role="Dealing">
+              <PropertyRef Name="person_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="person_id_cascade">
+          <End Role="Person" Type="Self.Person" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Dealing" Type="Self.Dealing" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="person_id" />
+            </Principal>
+            <Dependent Role="Dealing">
+              <PropertyRef Name="person_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="EDITION_ACTIVITY_FK">
+          <End Role="Edition" Type="Self.Edition" Multiplicity="0..1" />
+          <End Role="Activity" Type="Self.Activity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Edition">
+              <PropertyRef Name="edition_id" />
+            </Principal>
+            <Dependent Role="Activity">
+              <PropertyRef Name="edition_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="edition_id_activity_cascade">
+          <End Role="Edition" Type="Self.Edition" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Activity" Type="Self.Activity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Edition">
+              <PropertyRef Name="edition_id" />
+            </Principal>
+            <Dependent Role="Activity">
+              <PropertyRef Name="edition_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="segment_edition_cascade">
+          <End Role="Segment" Type="Self.Segment" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Edition" Type="Self.Edition" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Segment">
+              <PropertyRef Name="segment_id" />
+            </Principal>
+            <Dependent Role="Edition">
+              <PropertyRef Name="segment_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="segment_edition_fk">
+          <End Role="Segment" Type="Self.Segment" Multiplicity="0..1" />
+          <End Role="Edition" Type="Self.Edition" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Segment">
+              <PropertyRef Name="segment_id" />
+            </Principal>
+            <Dependent Role="Edition">
+              <PropertyRef Name="segment_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="publication_monographAndThesis_cascade">
+          <End Role="Publication" Type="Self.Publication" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="MonographAndThesis" Type="Self.MonographAndThesi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Publication">
+              <PropertyRef Name="s_no" />
+            </Principal>
+            <Dependent Role="MonographAndThesis">
+              <PropertyRef Name="s_no" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="publication_monographAndThesis_fk">
+          <End Role="Publication" Type="Self.Publication" Multiplicity="0..1" />
+          <End Role="MonographAndThesis" Type="Self.MonographAndThesi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Publication">
+              <PropertyRef Name="s_no" />
+            </Principal>
+            <Dependent Role="MonographAndThesis">
+              <PropertyRef Name="s_no" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Student_Person">
+          <End Role="Person" Type="Self.Person" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Student" Type="Self.Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="person_id" />
+            </Principal>
+            <Dependent Role="Student">
+              <PropertyRef Name="person_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PERSON_ACTIVITY_FK">
+          <End Role="Person" Type="Self.Person" Multiplicity="0..1" />
+          <End Role="Activity" Type="Self.Activity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="person_id" />
+            </Principal>
+            <Dependent Role="Activity">
+              <PropertyRef Name="person_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="person_id_activity_cascade">
+          <End Role="Person" Type="Self.Person" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Activity" Type="Self.Activity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="person_id" />
+            </Principal>
+            <Dependent Role="Activity">
+              <PropertyRef Name="person_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="publication_segment_cascade">
+          <End Role="Publication" Type="Self.Publication" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Segment" Type="Self.Segment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Publication">
+              <PropertyRef Name="s_no" />
+            </Principal>
+            <Dependent Role="Segment">
+              <PropertyRef Name="s_no" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="publication_segment_fk">
+          <End Role="Publication" Type="Self.Publication" Multiplicity="0..1" />
+          <End Role="Segment" Type="Self.Segment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Publication">
+              <PropertyRef Name="s_no" />
+            </Principal>
+            <Dependent Role="Segment">
+              <PropertyRef Name="s_no" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="publication_thesis_cascade">
+          <End Role="Publication" Type="Self.Publication" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Thesis" Type="Self.Thesis" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Publication">
+              <PropertyRef Name="s_no" />
+            </Principal>
+            <Dependent Role="Thesis">
+              <PropertyRef Name="s_no" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="publication_thesis_fk">
+          <End Role="Publication" Type="Self.Publication" Multiplicity="1" />
+          <End Role="Thesis" Type="Self.Thesis" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Publication">
+              <PropertyRef Name="s_no" />
+            </Principal>
+            <Dependent Role="Thesis">
+              <PropertyRef Name="s_no" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="USER_ACTIVITY_FK">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Activity" Type="Self.Activity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="Activity">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="LibraryMISEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Authors" EntityType="Self.Author" />
+          <EntitySet Name="Books" EntityType="Self.Book" />
+          <EntitySet Name="BookAndmagazines" EntityType="Self.BookAndmagazine" />
+          <EntitySet Name="BookAuthors" EntityType="Self.BookAuthor" />
+          <EntitySet Name="Branches" EntityType="Self.Branch" />
+          <EntitySet Name="Dealings" EntityType="Self.Dealing" />
+          <EntitySet Name="Editions" EntityType="Self.Edition" />
+          <EntitySet Name="MonographAndThesis" EntityType="Self.MonographAndThesi" />
+          <EntitySet Name="Newspapers" EntityType="Self.Newspaper" />
+          <EntitySet Name="People" EntityType="Self.Person" />
+          <EntitySet Name="Publications" EntityType="Self.Publication" />
+          <EntitySet Name="Segments" EntityType="Self.Segment" />
+          <EntitySet Name="Students" EntityType="Self.Student" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="Theses" EntityType="Self.Thesis" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <EntitySet Name="Activities" EntityType="Self.Activity" />
+          <EntitySet Name="NewspaperReports" EntityType="Self.NewspaperReport" />
+          <EntitySet Name="NotReturnedBooks" EntityType="Self.NotReturnedBook" />
+          <EntitySet Name="TotalPublications" EntityType="Self.TotalPublication" />
+          <AssociationSet Name="author_cascade" Association="Self.author_cascade">
+            <End Role="Author" EntitySet="Authors" />
+            <End Role="BookAuthor" EntitySet="BookAuthors" />
+          </AssociationSet>
+          <AssociationSet Name="author_fk" Association="Self.author_fk">
+            <End Role="Author" EntitySet="Authors" />
+            <End Role="BookAuthor" EntitySet="BookAuthors" />
+          </AssociationSet>
+          <AssociationSet Name="publication_book_cascade" Association="Self.publication_book_cascade">
+            <End Role="Publication" EntitySet="Publications" />
+            <End Role="Book" EntitySet="Books" />
+          </AssociationSet>
+          <AssociationSet Name="publication_book_fk" Association="Self.publication_book_fk">
+            <End Role="Publication" EntitySet="Publications" />
+            <End Role="Book" EntitySet="Books" />
+          </AssociationSet>
+          <AssociationSet Name="Edition_bookAndMagazineMoreDescription_cascade" Association="Self.Edition_bookAndMagazineMoreDescription_cascade">
+            <End Role="Edition" EntitySet="Editions" />
+            <End Role="BookAndmagazine" EntitySet="BookAndmagazines" />
+          </AssociationSet>
+          <AssociationSet Name="Edition_bookAndMagazineMoreDescription_fk" Association="Self.Edition_bookAndMagazineMoreDescription_fk">
+            <End Role="Edition" EntitySet="Editions" />
+            <End Role="BookAndmagazine" EntitySet="BookAndmagazines" />
+          </AssociationSet>
+          <AssociationSet Name="serialNumber_cascade" Association="Self.serialNumber_cascade">
+            <End Role="Publication" EntitySet="Publications" />
+            <End Role="BookAuthor" EntitySet="BookAuthors" />
+          </AssociationSet>
+          <AssociationSet Name="serialNumber_fk" Association="Self.serialNumber_fk">
+            <End Role="Publication" EntitySet="Publications" />
+            <End Role="BookAuthor" EntitySet="BookAuthors" />
+          </AssociationSet>
+          <AssociationSet Name="branch_publication_cascade" Association="Self.branch_publication_cascade">
+            <End Role="Branch" EntitySet="Branches" />
+            <End Role="Publication" EntitySet="Publications" />
+          </AssociationSet>
+          <AssociationSet Name="branch_publication_fk" Association="Self.branch_publication_fk">
+            <End Role="Branch" EntitySet="Branches" />
+            <End Role="Publication" EntitySet="Publications" />
+          </AssociationSet>
+          <AssociationSet Name="edition_dealing_fk" Association="Self.edition_dealing_fk">
+            <End Role="Edition" EntitySet="Editions" />
+            <End Role="Dealing" EntitySet="Dealings" />
+          </AssociationSet>
+          <AssociationSet Name="edition_id_cascade" Association="Self.edition_id_cascade">
+            <End Role="Edition" EntitySet="Editions" />
+            <End Role="Dealing" EntitySet="Dealings" />
+          </AssociationSet>
+          <AssociationSet Name="person_dealing_fk" Association="Self.person_dealing_fk">
+            <End Role="Person" EntitySet="People" />
+            <End Role="Dealing" EntitySet="Dealings" />
+          </AssociationSet>
+          <AssociationSet Name="person_id_cascade" Association="Self.person_id_cascade">
+            <End Role="Person" EntitySet="People" />
+            <End Role="Dealing" EntitySet="Dealings" />
+          </AssociationSet>
+          <AssociationSet Name="EDITION_ACTIVITY_FK" Association="Self.EDITION_ACTIVITY_FK">
+            <End Role="Edition" EntitySet="Editions" />
+            <End Role="Activity" EntitySet="Activities" />
+          </AssociationSet>
+          <AssociationSet Name="edition_id_activity_cascade" Association="Self.edition_id_activity_cascade">
+            <End Role="Edition" EntitySet="Editions" />
+            <End Role="Activity" EntitySet="Activities" />
+          </AssociationSet>
+          <AssociationSet Name="segment_edition_cascade" Association="Self.segment_edition_cascade">
+            <End Role="Segment" EntitySet="Segments" />
+            <End Role="Edition" EntitySet="Editions" />
+          </AssociationSet>
+          <AssociationSet Name="segment_edition_fk" Association="Self.segment_edition_fk">
+            <End Role="Segment" EntitySet="Segments" />
+            <End Role="Edition" EntitySet="Editions" />
+          </AssociationSet>
+          <AssociationSet Name="publication_monographAndThesis_cascade" Association="Self.publication_monographAndThesis_cascade">
+            <End Role="Publication" EntitySet="Publications" />
+            <End Role="MonographAndThesis" EntitySet="MonographAndThesis" />
+          </AssociationSet>
+          <AssociationSet Name="publication_monographAndThesis_fk" Association="Self.publication_monographAndThesis_fk">
+            <End Role="Publication" EntitySet="Publications" />
+            <End Role="MonographAndThesis" EntitySet="MonographAndThesis" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Student_Person" Association="Self.FK_Student_Person">
+            <End Role="Person" EntitySet="People" />
+            <End Role="Student" EntitySet="Students" />
+          </AssociationSet>
+          <AssociationSet Name="PERSON_ACTIVITY_FK" Association="Self.PERSON_ACTIVITY_FK">
+            <End Role="Person" EntitySet="People" />
+            <End Role="Activity" EntitySet="Activities" />
+          </AssociationSet>
+          <AssociationSet Name="person_id_activity_cascade" Association="Self.person_id_activity_cascade">
+            <End Role="Person" EntitySet="People" />
+            <End Role="Activity" EntitySet="Activities" />
+          </AssociationSet>
+          <AssociationSet Name="publication_segment_cascade" Association="Self.publication_segment_cascade">
+            <End Role="Publication" EntitySet="Publications" />
+            <End Role="Segment" EntitySet="Segments" />
+          </AssociationSet>
+          <AssociationSet Name="publication_segment_fk" Association="Self.publication_segment_fk">
+            <End Role="Publication" EntitySet="Publications" />
+            <End Role="Segment" EntitySet="Segments" />
+          </AssociationSet>
+          <AssociationSet Name="publication_thesis_cascade" Association="Self.publication_thesis_cascade">
+            <End Role="Publication" EntitySet="Publications" />
+            <End Role="Thesis" EntitySet="Theses" />
+          </AssociationSet>
+          <AssociationSet Name="publication_thesis_fk" Association="Self.publication_thesis_fk">
+            <End Role="Publication" EntitySet="Publications" />
+            <End Role="Thesis" EntitySet="Theses" />
+          </AssociationSet>
+          <AssociationSet Name="USER_ACTIVITY_FK" Association="Self.USER_ACTIVITY_FK">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Activity" EntitySet="Activities" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="LibraryMISModelStoreContainer" CdmEntityContainer="LibraryMISEntities">
+          <EntitySetMapping Name="Authors">
+            <EntityTypeMapping TypeName="LibraryMISModel.Author">
+              <MappingFragment StoreEntitySet="Author">
+                <ScalarProperty Name="author_id" ColumnName="author_id" />
+                <ScalarProperty Name="author_firstname" ColumnName="author_firstname" />
+                <ScalarProperty Name="author_lastname" ColumnName="author_lastname" />
+                <ScalarProperty Name="author_description" ColumnName="author_description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Books">
+            <EntityTypeMapping TypeName="LibraryMISModel.Book">
+              <MappingFragment StoreEntitySet="Book">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="s_no" ColumnName="s_no" />
+                <ScalarProperty Name="book_type" ColumnName="book_type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BookAndmagazines">
+            <EntityTypeMapping TypeName="LibraryMISModel.BookAndmagazine">
+              <MappingFragment StoreEntitySet="BookAndmagazine">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="edition_id" ColumnName="edition_id" />
+                <ScalarProperty Name="publication_no" ColumnName="publication_no" />
+                <ScalarProperty Name="publication_place" ColumnName="publication_place" />
+                <ScalarProperty Name="publisher_name" ColumnName="publisher_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BookAuthors">
+            <EntityTypeMapping TypeName="LibraryMISModel.BookAuthor">
+              <MappingFragment StoreEntitySet="BookAuthor">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="author_id" ColumnName="author_id" />
+                <ScalarProperty Name="s_no" ColumnName="s_no" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Branches">
+            <EntityTypeMapping TypeName="LibraryMISModel.Branch">
+              <MappingFragment StoreEntitySet="Branch">
+                <ScalarProperty Name="branch_id" ColumnName="branch_id" />
+                <ScalarProperty Name="branch_name" ColumnName="branch_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Dealings">
+            <EntityTypeMapping TypeName="LibraryMISModel.Dealing">
+              <MappingFragment StoreEntitySet="Dealing">
+                <ScalarProperty Name="dealing_id" ColumnName="dealing_id" />
+                <ScalarProperty Name="person_id" ColumnName="person_id" />
+                <ScalarProperty Name="edition_id" ColumnName="edition_id" />
+                <ScalarProperty Name="issue_date" ColumnName="issue_date" />
+                <ScalarProperty Name="return_date" ColumnName="return_date" />
+                <ScalarProperty Name="paid_money" ColumnName="paid_money" />
+                <ScalarProperty Name="returned" ColumnName="returned" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Editions">
+            <EntityTypeMapping TypeName="LibraryMISModel.Edition">
+              <MappingFragment StoreEntitySet="Edition">
+                <ScalarProperty Name="edition_id" ColumnName="edition_id" />
+                <ScalarProperty Name="segment_id" ColumnName="segment_id" />
+                <ScalarProperty Name="edition_no" ColumnName="edition_no" />
+                <ScalarProperty Name="publication_quantity" ColumnName="publication_quantity" />
+                <ScalarProperty Name="publication_pages" ColumnName="publication_pages" />
+                <ScalarProperty Name="cd_quantity" ColumnName="cd_quantity" />
+                <ScalarProperty Name="registration_date_type" ColumnName="registration_date_type" />
+                <ScalarProperty Name="registration_year" ColumnName="registration_year" />
+                <ScalarProperty Name="registration_month" ColumnName="registration_month" />
+                <ScalarProperty Name="registration_day" ColumnName="registration_day" />
+                <ScalarProperty Name="publication_date_type" ColumnName="publication_date_type" />
+                <ScalarProperty Name="publication_year" ColumnName="publication_year" />
+                <ScalarProperty Name="publication_month" ColumnName="publication_month" />
+                <ScalarProperty Name="publication_day" ColumnName="publication_day" />
+                <ScalarProperty Name="cupboard_no" ColumnName="cupboard_no" />
+                <ScalarProperty Name="cell_no" ColumnName="cell_no" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MonographAndThesis">
+            <EntityTypeMapping TypeName="LibraryMISModel.MonographAndThesi">
+              <MappingFragment StoreEntitySet="MonographAndThesis">
+                <ScalarProperty Name="monograph_thesis_id" ColumnName="monograph_thesis_id" />
+                <ScalarProperty Name="s_no" ColumnName="s_no" />
+                <ScalarProperty Name="supervisor_firstname" ColumnName="supervisor_firstname" />
+                <ScalarProperty Name="supervisor_lastname" ColumnName="supervisor_lastname" />
+                <ScalarProperty Name="student_registration_year" ColumnName="student_registration_year" />
+                <ScalarProperty Name="student_graduation_year" ColumnName="student_graduation_year" />
+                <ScalarProperty Name="defence_data" ColumnName="defence_data" />
+                <ScalarProperty Name="mark" ColumnName="mark" />
+                <ScalarProperty Name="graduation_period" ColumnName="graduation_period" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Newspapers">
+            <EntityTypeMapping TypeName="LibraryMISModel.Newspaper">
+              <MappingFragment StoreEntitySet="Newspaper">
+                <ScalarProperty Name="newspaper_id" ColumnName="newspaper_id" />
+                <ScalarProperty Name="newspaper_name" ColumnName="newspaper_name" />
+                <ScalarProperty Name="publisher_name" ColumnName="publisher_name" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+                <ScalarProperty Name="date_type" ColumnName="date_type" />
+                <ScalarProperty Name="publication_date" ColumnName="publication_date" />
+                <ScalarProperty Name="registration_date" ColumnName="registration_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="People">
+            <EntityTypeMapping TypeName="LibraryMISModel.Person">
+              <MappingFragment StoreEntitySet="Person">
+                <ScalarProperty Name="person_id" ColumnName="person_id" />
+                <ScalarProperty Name="person_idCard" ColumnName="person_idCard" />
+                <ScalarProperty Name="person_firstname" ColumnName="person_firstname" />
+                <ScalarProperty Name="person_lastname" ColumnName="person_lastname" />
+                <ScalarProperty Name="person_father_name" ColumnName="person_father_name" />
+                <ScalarProperty Name="person_state" ColumnName="person_state" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="university" ColumnName="university" />
+                <ScalarProperty Name="faculty" ColumnName="faculty" />
+                <ScalarProperty Name="department" ColumnName="department" />
+                <ScalarProperty Name="phone_number" ColumnName="phone_number" />
+                <ScalarProperty Name="email" ColumnName="email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Publications">
+            <EntityTypeMapping TypeName="LibraryMISModel.Publication">
+              <MappingFragment StoreEntitySet="Publication">
+                <ScalarProperty Name="s_no" ColumnName="s_no" />
+                <ScalarProperty Name="ISBN" ColumnName="ISBN" />
+                <ScalarProperty Name="DDC_classificationNo" ColumnName="DDC_classificationNo" />
+                <ScalarProperty Name="LLC_classificationNo" ColumnName="LLC_classificationNo" />
+                <ScalarProperty Name="publication_type" ColumnName="publication_type" />
+                <ScalarProperty Name="publication_name" ColumnName="publication_name" />
+                <ScalarProperty Name="translator" ColumnName="translator" />
+                <ScalarProperty Name="branch_id" ColumnName="branch_id" />
+                <ScalarProperty Name="permission" ColumnName="permission" />
+                <ScalarProperty Name="publication_language" ColumnName="publication_language" />
+                <ScalarProperty Name="publication_description" ColumnName="publication_description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Segments">
+            <EntityTypeMapping TypeName="LibraryMISModel.Segment">
+              <MappingFragment StoreEntitySet="Segment">
+                <ScalarProperty Name="segment_id" ColumnName="segment_id" />
+                <ScalarProperty Name="s_no" ColumnName="s_no" />
+                <ScalarProperty Name="segment_no" ColumnName="segment_no" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Students">
+            <EntityTypeMapping TypeName="LibraryMISModel.Student">
+              <MappingFragment StoreEntitySet="Student">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="person_id" ColumnName="person_id" />
+                <ScalarProperty Name="semester" ColumnName="semester" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="LibraryMISModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Theses">
+            <EntityTypeMapping TypeName="LibraryMISModel.Thesis">
+              <MappingFragment StoreEntitySet="Thesis">
+                <ScalarProperty Name="thesis_id" ColumnName="thesis_id" />
+                <ScalarProperty Name="s_no" ColumnName="s_no" />
+                <ScalarProperty Name="internal_conflict" ColumnName="internal_conflict" />
+                <ScalarProperty Name="external_conflict" ColumnName="external_conflict" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="LibraryMISModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="image" ColumnName="image" />
+                <ScalarProperty Name="level" ColumnName="level" />
+                <ScalarProperty Name="status" ColumnName="status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Activities">
+            <EntityTypeMapping TypeName="LibraryMISModel.Activity">
+              <MappingFragment StoreEntitySet="Activity">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="activity_type" ColumnName="activity_type" />
+                <ScalarProperty Name="date_time" ColumnName="date_time" />
+                <ScalarProperty Name="person_id" ColumnName="person_id" />
+                <ScalarProperty Name="edition_id" ColumnName="edition_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NewspaperReports">
+            <EntityTypeMapping TypeName="LibraryMISModel.NewspaperReport">
+              <MappingFragment StoreEntitySet="NewspaperReport">
+                <ScalarProperty Name="newspaper_name" ColumnName="newspaper_name" />
+                <ScalarProperty Name="publisher_name" ColumnName="publisher_name" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NotReturnedBooks">
+            <EntityTypeMapping TypeName="LibraryMISModel.NotReturnedBook">
+              <MappingFragment StoreEntitySet="NotReturnedBook">
+                <ScalarProperty Name="person_name" ColumnName="person_name" />
+                <ScalarProperty Name="university" ColumnName="university" />
+                <ScalarProperty Name="faculty" ColumnName="faculty" />
+                <ScalarProperty Name="phone_number" ColumnName="phone_number" />
+                <ScalarProperty Name="publication_name" ColumnName="publication_name" />
+                <ScalarProperty Name="issue_date" ColumnName="issue_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TotalPublications">
+            <EntityTypeMapping TypeName="LibraryMISModel.TotalPublication">
+              <MappingFragment StoreEntitySet="TotalPublication">
+                <ScalarProperty Name="publication_name" ColumnName="publication_name" />
+                <ScalarProperty Name="publicationType" ColumnName="publicationType" />
+                <ScalarProperty Name="publication_quantity" ColumnName="publication_quantity" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

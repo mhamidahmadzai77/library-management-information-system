@@ -1,0 +1,129 @@
+﻿
+@{ 
+    if (Session["user"] != null)
+    {
+        if (Session["user"].ToString() == "authenticated")
+        {
+            if (Session["level"].ToString() == "admin")
+            {
+                Layout = "~/Views/Shared/_AdminLayout.cshtml";
+            }
+            if (Session["level"].ToString() == "director")
+            {
+                Layout = "~/Views/Shared/_UserLayout.cshtml";
+            }
+        }
+        else if (Session["user"].ToString() == "locked")
+        {
+            // Redirect to lock sreen page using javascript
+            <script>
+                window.location.href = '@Url.Action("LockScreen","User")'
+            </script>
+        }
+
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_GeneralLayout.cshtml";
+    }
+}
+
+
+@{
+    ViewBag.Title = "Index";
+}
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <link href="~/assets/sweetalert.css" rel="stylesheet" />
+
+</head>
+<body>
+    <h2>Index</h2>
+    <button onclick="alert1()">alert</button>
+    <script src="~/assets/sweetalert.min.js"></script>
+
+    <script type="text/javascript">
+        function alert1() {
+            //swat("God job!", "You success to login", "Success");
+            
+        }
+    </script>
+<pre>
+sdf
+df
+df
+sd
+f
+asdfas
+f
+as
+fas
+f
+as
+f
+asf
+as
+f
+sdf
+as
+df
+ssdf
+df
+df
+sd
+f
+asdfas
+f
+as
+fas
+f
+as
+f
+asf
+as
+f
+sdf
+as
+df
+ssdf
+df
+df
+sd
+f
+asdfas
+f
+as
+fas
+f
+as
+f
+asf
+as
+f
+sdf
+as
+df
+ssdf
+df
+df
+sd
+f
+asdfas
+f
+as
+fas
+f
+as
+f
+asf
+as
+f
+sdf
+as
+df
+s
+</pre>
+</body>
+</html>
+

@@ -1,0 +1,210 @@
+﻿@model IEnumerable<Site.Models.Newspaper>
+@{
+    if (Session["user"] != null)
+    {
+        if (Session["user"].ToString() == "authenticated")
+        {
+            if (Session["level"].ToString() == "admin")
+            {
+                Layout = "~/Views/Shared/_AdminLayout.cshtml";
+            }
+            if (Session["level"].ToString() == "director")
+            {
+                Layout = "~/Views/Shared/_UserLayout.cshtml";
+            }
+        }
+        else if (Session["user"].ToString() == "locked")
+        {
+            // Redirect to lock sreen page using javascript
+            <script>
+                window.location.href = '@Url.Action("LockScreen","User")';
+            </script>
+        }
+
+    }
+    else
+    {
+        <script>
+            window.location.href = '@Url.Action("LoginView","User")';
+        </script>
+    }
+
+}
+<html>
+<head>
+
+</head>
+<body>
+
+    <div class="note note-success">
+        <h3 style="color: gray; font-weight:bold; text-align:center;"> د اخبارونو لیست</h3>
+    </div>
+
+    <div class="row">
+
+        <div class="col-md-12">
+            <!-- BEGIN EXAMPLE TABLE PORTLET-->
+            <div class="portlet box green">
+                <div class="portlet-title">
+                    <div class="caption" style="color:aqua;  font-size:25px;">
+                        د استادانو لیست
+                    </div>
+                    <div class="tools"> </div>
+                </div>
+
+                <div class="portlet-body">
+
+                    <table class="table table-striped table-bordered table-hover" id="sample_2">
+                        <thead>
+                            <tr>
+                                <th> شماره</th>
+                                <th> د اخبار نوم </th>
+                                <th>د مطبعی نوم </th>
+                                <th> تعداد </th>
+                                <th> تاریخ ډول  </th>
+                                <th> چاپ تاریخ </th>
+                                <th> ثبت تاریخ </th>
+                                <th>عمل</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{
+                                var number = 1;
+                                var newsnameIdTdId = "";
+                                var publishernameIdTdId = "";
+                                var quantityIdTdId = "";
+                                var datetypeIdTdId = "";
+
+                                var publicationdateIdTdId = "";
+                                var registrationdateIdTdId = "";
+
+                                foreach (var item in Model)
+                                {
+                                    newsnameIdTdId = "newsnameIdTdId" + item.newspaper_id;
+                                    publishernameIdTdId = "publishernameIdTdId" + item.newspaper_id;
+                                    quantityIdTdId = "quantityIdTdId" + item.newspaper_id;
+                                    datetypeIdTdId = "datetypeIdTdId" + item.newspaper_id;
+
+                                    publicationdateIdTdId = "publicationdateIdTdId" + item.newspaper_id;
+                                    registrationdateIdTdId = "registrationdateIdTdId" + item.newspaper_id;
+
+
+                                    <tr id="@item.newspaper_id">
+                                        <td id="@item.newspaper_id">@number</td>
+                                        <td id="newsnameIdTdId">@item.newspaper_name</td>
+                                        <td id="publishernameIdTdId">@item.publisher_name</td>
+                                        <td id="quantityIdTdId">@item.quantity</td>
+                                        <td id="datetypeIdTdId">@item.date_type</td>
+                                        <td id="publicationdateIdTdId">@item.publication_date.ToString("yyyy/MM/dd")</td>
+                                        <td id="registrationdateIdTdId">@item.registration_date.ToShortDateString()</td>
+
+                                        <td>
+                                            <a href="/Newspaper/NewspaperEditView/@item.newspaper_id" class="btn green mt-ladda-btn ladda-button btn-outline" data-style="slide-down" data-spinner-color="#333">
+                                                <span class="ladda-label">
+                                                    <i class="fa fa-edit"></i> تغیرات
+                                                </span>
+                                                <span class="ladda-spinner"></span>
+                                            </a>
+
+                                            <button type="button" class="btn red mt-ladda-btn ladda-button btn-outline" data-style="slide-down" data-spinner-color="#333" onclick="DeleteNewspaper(@item.newspaper_id)">
+                                                <span class="ladda-label">
+                                                    <i class="fa fa-trash"></i> حذف
+                                                </span>
+                                                <span class="ladda-spinner"></span>
+                                            </button>
+                                        </td>
+                                    </tr>
+
+                                    number++;
+
+                                }
+                            }
+                        </tbody>
+
+                    </table>
+
+
+                </div>
+
+            </div>
+            <!-- END EXAMPLE TABLE PORTLET-->
+
+        </div>
+
+    </div>
+
+
+
+
+
+    <script type="text/javascript">
+        function DeleteNewspaper(id) {
+            swal({
+                title: "ایا تاسو ډاډه یاست؟",
+                text: "یو ځل چې معلومات له منځه لاړل د بیا ځل لپاره یې نشئ ترلاسه کولی!",
+                icon: "warning",
+                buttons: ["نه", "هو"]
+                ,
+                dangerMode: true,
+            })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        // If user clicked yes button
+
+                        $.ajax({
+                            type: 'POST',
+                            url: '/Newspaper/NewspaperDelete',
+                            data: { id: id },
+                            success: function (response) {
+                                if (response == true) {
+
+
+                                    swal("په بریالیتوب سره معلومات له سېسټم څخه لرې شو.", "", {
+                                        icon: "success",
+                                        buttons: "سمه ده",
+                                        url: "Person/PersonView"
+
+                                    });
+                                    const elementToRemove = document.getElementById('' + id);
+
+                                    elementToRemove.remove();
+
+                                }
+                                else if (response == false) {
+                                    swal("ستونزه رامنځته شوه", "", {
+                                        icon: "error",
+                                        buttons: "سمه ده"
+                                    });
+                                }
+                                else {
+                                    swal("ستونزه رامنځته شوه", "Exception: " + response.responseText, {
+                                        icon: "error",
+                                        buttons: "سمه ده"
+                                    });
+                                }
+
+
+                            },
+                            error: function (error) {
+                                swal("ستونزه رامنځته شوه", "Error: " + error.responseText, {
+                                    icon: "error",
+                                    buttons: "سمه ده"
+                                });
+                            }
+                        });
+
+
+                    } else {
+                        swal("معلومات خوندي پاتې شول!", "", { icon: "info", buttons: "سمه ده" });
+                    }
+                });
+        }
+
+    </script>
+
+    <script src="~/assets/alert.js"></script>
+
+
+</body>
+</html>

@@ -1,0 +1,634 @@
+﻿@model IEnumerable<Site.Models.Author>
+
+@{
+    if (Session["user"] != null)
+    {
+        if (Session["user"].ToString() == "authenticated")
+        {
+            if (Session["level"].ToString() == "admin")
+            {
+                Layout = "~/Views/Shared/_AdminLayout.cshtml";
+            }
+            if (Session["level"].ToString() == "director")
+            {
+                Layout = "~/Views/Shared/_UserLayout.cshtml";
+            }
+        }
+        else if (Session["user"].ToString() == "locked")
+        {
+            // Redirect to lock sreen page using javascript
+            <script>
+                window.location.href = '@Url.Action("LockScreen","User")';
+            </script>
+        }
+
+    }
+    else
+    {
+        <script>
+            window.location.href = '@Url.Action("LoginView","User")';
+        </script>
+    }
+}
+
+<html>
+<head>
+    <style>
+
+        .row {
+            margin-bottom: 30px;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        #tab1 {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="tab1" class="tab-content">
+        <div class="row">
+
+            <div class="col-md-2">
+                <button type="button" class="btn green mt-ladda-btn ladda-button btn-outline " data-style="slide-down" data-spinner-color="#333" style="padding:6px 20px 6px 20px;" onclick="showTab('tab2')">
+                    <span class="ladda-label">
+                        <i id="icon" class="fa fa-save"></i> نوې لیکوال ثبتول
+                    </span>
+                    <span class="ladda-spinner"></span>
+                </button>
+            </div>
+        </div>
+        <div class="row">
+
+            <div class="col-md-12">
+                <!-- BEGIN EXAMPLE TABLE PORTLET-->
+                <div class="portlet box green">
+                    <div class="portlet-title">
+                        <div class="caption" style="color:aqua;  font-size:25px;">
+                            د لیکوالانو لیست
+                        </div>
+                        <div class="tools"> </div>
+                    </div>
+
+                    <div class="portlet-body">
+
+                        <table class="table table-striped table-bordered table-hover" id="sample_2">
+                            <thead>
+                                <tr>
+                                    <th> شماره</th>
+                                    <th> د لیکوال نوم </th>
+                                    <th> د لیکوال تخلص </th>
+                                    <th> اضافه معلومات </th>
+                                    <th> عمل </th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr id="newRow" style="height:0">
+                                    <td style="height:0;padding:0"></td>
+                                    <td style="height:0;padding:0"></td>
+                                    <td style="height:0;padding:0"></td>
+                                    <td style="height:0;padding:0"></td>
+                                    <td style="height:0;padding:0"></td>
+
+                                </tr>
+
+                                @{
+                                    var authorIdTDId = "";
+                                    var authorNameTDId = "";
+                                    var authorNickNameTDId = "";
+                                    var DescriptionTDId = "";
+
+
+                                    foreach (var item in Model)
+                                    {
+                                        authorIdTDId = "authorIdTDId" + item.author_id;
+                                        authorNameTDId = "authorNameTDId" + item.author_id;
+                                        authorNickNameTDId = "authorNickNameTDId" + item.author_id;
+                                        DescriptionTDId = "DescriptionTDId" + item.author_id;
+                                        <tr id="@item.author_id">
+
+                                            <td id="@authorIdTDId">@item.author_id</td>
+                                            <td id="@authorNameTDId">@item.author_firstname</td>
+                                            <td id="@authorNickNameTDId">@item.author_lastname</td>
+                                            <td id="@DescriptionTDId">@item.author_description</td>
+                                            <td>
+                                                <button type="button" class="btn green mt-ladda-btn ladda-button btn-outline" data-style="slide-down" data-spinner-color="#333" onclick="updateRecord(@item.author_id,'@item.author_firstname','@item.author_lastname','@item.author_description')">
+                                                    <span class="ladda-label">
+                                                        <i class="fa fa-edit"></i> تغیرات
+                                                    </span>
+                                                    <span class="ladda-spinner"></span>
+                                                </button>
+
+                                                <button type="button" class="btn red mt-ladda-btn ladda-button btn-outline" data-style="slide-down" data-spinner-color="#333" onclick="deleteRecord(@item.author_id)">
+                                                    <span class="ladda-label">
+                                                        <i class="fa fa-trash"></i> حذف
+                                                    </span>
+                                                    <span class="ladda-spinner"></span>
+                                                </button>
+                                            </td>
+                                        </tr>
+
+
+                                    }
+
+                                }
+
+
+                            </tbody>
+
+                        </table>
+
+
+                    </div>
+
+                </div>
+                <!-- END EXAMPLE TABLE PORTLET-->
+
+            </div>
+
+        </div>
+
+
+
+    </div>
+
+
+
+    <div id="tab2" class="tab-content" style="border: 1px solid aqua; ">
+
+        <div class="note note-success">
+
+            <h3 style="color: gray; font-weight:bold; text-align: center">لیکوال ثبت کړې  </h3>
+        </div>
+
+        <div>
+
+            <form id="authorInfo" role="form" method="post">
+
+                <div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="form-group col-md-11">
+                        <div class="col-md-2 ">
+
+                            <label style="font-size:20px">د لیکوال نوم</label>
+
+                        </div>
+
+                        <div class=" col-md-6">
+                            <input type="text" class="form-control col-md-6" name="author_name" id="author_name" style="border-radius:6px;" placeholder="د لیکوال نوم" />
+                            <br />
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-1"></div>
+                    <div class="form-group col-md-11">
+                        <div class="col-md-2">
+
+                            <label style="font-size:20px">د لیکوال تخلص</label>
+
+                        </div>
+                        <div class="col-md-6 ">
+
+
+                            <input type="text" class="form-control" name="author_lastname" id="author_lastname" style="border-radius:6px;" placeholder="د لیکوال تخلص" />
+
+
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-1"></div>
+                    <div class="form-group col-md-11">
+                        <div class="col-md-2">
+
+                            <label style="font-size:20px">اضافه معلومات</label>
+
+                        </div>
+
+                        <div class="col-md-6 ">
+
+
+                            <input type="text" class="form-control" name="author_description" id="author_description" style="border-radius:6px;" placeholder="اضافه معلومات" />
+
+
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-1"></div>
+                    <div class="form-group col-md-11">
+                        <div class="col-md-2">
+
+
+                        </div>
+                        <div class="col-md-6">
+                            <button type="button" class="btn green mt-ladda-btn ladda-button btn-outline " data-style="slide-down" data-spinner-color="#333" style="padding:6px 20px 6px 20px;" onclick="showTab('tab1')">
+                                <span class="ladda-label">
+                                    <i id="icon" class="fa fa-th-list"></i> لیکوالانو لیست
+                                </span>
+                                <span class="ladda-spinner"></span>
+                            </button>
+                            <button type="submit" id="submitBtn" class="btn green mt-ladda-btn ladda-button btn-outline pull-right" data-style="slide-down" data-spinner-color="#333" style="padding:6px 20px 6px 20px;" onclick="submitForm()">
+                                <span class="ladda-label">
+                                    <i id="icon" class="fa fa-save"></i> ثبتول
+                                </span>
+                                <span class="ladda-spinner"></span>
+                            </button>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+            </form>
+
+        </div>
+    </div>
+
+
+    <div id="tab3" class="tab-content" style="border: 1px solid aqua;">
+
+        <div class="note note-success">
+
+            <h3 style="color: gray; font-weight:bold; text-align: center">لیکوال تغیر کړې  </h3>
+        </div>
+
+        <div>
+
+            <form>
+                <div class="row">
+                    <input type="hidden" name="edit_author_id" id="edit_author_id" value="" />
+                </div>
+
+                <div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="form-group col-md-11">
+                        <div class="col-md-2 ">
+
+                            <label style="font-size:20px">د لیکوال نوم</label>
+
+                        </div>
+
+                        <div class=" col-md-6">
+
+                            <input type="text" class="form-control" name="edit_author_firstname" id="edit_author_firstname" style="border-radius:6px;" placeholder="د لیکوال نوم" />
+                            <br />
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-1"></div>
+                    <div class="form-group col-md-11">
+                        <div class="col-md-2 ">
+
+                            <label style="font-size:20px">د لیکوال تخلص</label>
+
+                        </div>
+
+                        <div class=" col-md-6">
+
+                            <input type="text" class="form-control" name="edit_author_lastname" id="edit_author_lastname" style="border-radius:6px;" placeholder="د لیکوال تخلص" />
+                            <br />
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-1"></div>
+                    <div class="form-group col-md-11">
+                        <div class="col-md-2 ">
+
+                            <label style="font-size:20px">اضافه معلومات</label>
+
+                        </div>
+
+                        <div class=" col-md-6">
+
+                            <input type="text" class="form-control" name="edit_author_description" id="edit_author_description" style="border-radius:6px;" placeholder="اضافه معلومات" />
+                            <br />
+
+                        </div>
+
+                    </div>
+                    <div class="col-md-1"></div>
+                    <div class="form-group col-md-11">
+                        <div class="col-md-2"></div>
+                        <div class="col-md-6">
+                            <button type="button" class="btn green mt-ladda-btn ladda-button btn-outline pull-right " data-style="slide-down" data-spinner-color="#333" style="padding:6px 20px 6px 20px;" onclick="updateForm()">
+                                <span class="ladda-label">
+                                    <i id="icon" class="fa fa-edit"></i> تغیرول
+                                </span>
+                                <span class="ladda-spinner"></span>
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+            </form>
+        </div>
+    </div>
+
+
+
+
+
+    <script type="text/javascript">
+
+        function showTab(tabId) {
+
+            var tabContent = document.getElementById(tabId);
+            const tabsToHide = document.getElementsByClassName('tab-content');
+
+            Array.from(tabsToHide).forEach(element => {
+                element.style.display = "none";
+            });
+            tabContent.style.display = "block";
+
+
+        }
+
+        function Empty() {
+            var author_name = document.getElementById("author_name");
+            var author_lastname = document.getElementById("author_lastname");
+            var author_description = document.getElementById("author_description");
+            author_name.value = "";
+            author_lastname.value = "";
+            author_description.value = "";
+        }
+
+        // code for Insertion Author Information
+        function submitForm() {
+            event.preventDefault();
+            var author_name = document.getElementById("author_name").value;
+            var author_lastname = document.getElementById("author_lastname").value;
+            var author_description = document.getElementById("author_description").value;
+            if (author_name == "") {
+                document.getElementById("author_name").style.border = "1px solid red";
+            }
+            else if (/^\d+$/.test(author_name)) {
+                swal("د لیکوال نوم صحې ولیکئ", "", {
+                    icon: "error",
+                    buttons: "سمه ده"
+
+                });
+                document.getElementById("author_name").style.border = "1px solid red";
+
+            }
+            else if (author_lastname == "") {
+                document.getElementById("author_lastname").style.border = "1px solid red";
+            }
+            else if (/^\d+$/.test(author_lastname)) {
+                swal("د لیکوال تخلص صحې ولیکئ", "", {
+                    icon: "error",
+                    buttons: "سمه ده"
+
+                });
+                document.getElementById("author_lastname").style.border = "1px solid red";
+
+            }
+            else if (author_description == "") {
+                document.getElementById("author_description").style.border = "1px solid red";
+            }
+            else if (/^\d+$/.test(author_description)) {
+                swal("صحي معلومات ولیکې", "", {
+                    icon: "error",
+                    buttons: "سمه ده"
+
+                });
+
+            }
+            else {
+
+                var data = {
+                    author_firstname: author_name,
+                    author_lastname: author_lastname,
+                    author_description: author_description
+                };
+                $.ajax({
+                    url: "/Author/AuthorRegistration",
+                    type: "post",
+                    data: data,
+                    success: function (res) {
+                        if (res == true) {
+                            swal("په بریالیتوب سره معلومات ثبت شول", "", {
+                                icon: "success",
+                                buttons: "سمه ده"
+
+                            });
+                            Empty();
+                        }
+                        else if (res == false) {
+
+                            swal("یوي ستونزه له امله معلومات ثبت نه شول ", "", {
+                                icon: "error",
+                                buttons: "سمه ده"
+
+                            });
+                        }
+                        else {
+                            swal("ستونزه رامنځته شوه", "", {
+                                icon: "error",
+                                buttons: "سمه ده"
+
+                            });
+                        }
+
+                    },
+                    error: function (err) {
+                        swal("ستونزه رامنځته شوه", "", {
+                            icon: "error",
+                            buttons: "سمه ده"
+
+                        });
+                    }
+                });
+            }
+
+        }
+
+
+        // code for delete Record
+
+        function deleteRecord(id) {
+
+            swal({
+                title: "ایا تاسو ډاډه یاست؟",
+                text: "یو ځل چې معلومات له منځه لاړل د بیا ځل لپاره یې نشئ ترلاسه کولی!",
+                icon: "warning",
+                buttons: ["نه", "هو"]
+                ,
+                dangerMode: true,
+            })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        // If user clicked yes button
+
+
+                        $.ajax({
+
+                            url: "/Author/AuthorDelete",
+                            type: "post",
+                            data: { id: id },
+                            success: function (response) {
+                                if (response == true) {
+
+                                    swal("په بریالیتوب سره معلومات حذف شول", "", {
+                                        icon: "success",
+                                        buttons: "سمه ده",
+
+
+                                    });
+                                    const elementToRemove = document.getElementById('' + id);
+
+                                    elementToRemove.remove();
+                                }
+                            }, error: function (err) {
+                                swal("ستونزه رامنځته شوه", "Error: ", {
+                                    icon: "error",
+                                    buttons: "سمه ده"
+                                });
+                            }
+                        });
+
+
+
+                    }
+                    else {
+                        swal("معلومات خوندي پاتې شول!", "", { icon: "info", buttons: "سمه ده" });
+                    }
+                });
+
+
+        }
+
+
+
+        function updateRecord(id, firstname, lastname, description) {
+            event.preventDefault();
+            document.getElementById("edit_author_id").value = id;
+            document.getElementById("edit_author_firstname").value = firstname;
+            document.getElementById("edit_author_lastname").value = lastname;
+            document.getElementById("edit_author_description").value = description;
+
+
+            showTab('tab3');
+
+        }
+
+
+        function updateForm() {
+
+            var edit_author_id = document.getElementById("edit_author_id").value;
+            var edit_author_firstname = document.getElementById("edit_author_firstname").value;
+            var edit_author_lastname = document.getElementById("edit_author_lastname").value;
+            var edit_author_description = document.getElementById("edit_author_description").value;
+
+            if (edit_author_firstname == "") {
+                document.getElementById("edit_author_firstname").style.border = "1px solid red";
+            }
+            else if (/^\d+$/.test(author_name)) {
+                swal("د لیکوال نوم صحې ولیکئ", "", {
+                    icon: "error",
+                    buttons: "سمه ده"
+
+                });
+                document.getElementById("edit_author_firstname").style.border = "1px solid red";
+
+            }
+            else if (edit_author_lastname == "") {
+                document.getElementById("edit_author_lastname").style.border = "1px solid red";
+            }
+            else if (/^\d+$/.test(edit_author_lastname)) {
+                swal("د لیکوال تخلص صحې ولیکئ", "", {
+                    icon: "error",
+                    buttons: "سمه ده"
+
+                });
+                document.getElementById("edit_author_lastname").style.border = "1px solid red";
+
+            }
+            else if (edit_author_description == "") {
+                document.getElementById("edit_author_description").style.border = "1px solid red";
+            }
+            else if (/^\d+$/.test(edit_author_description)) {
+                swal("صحي معلومات ولیکې", "", {
+                    icon: "error",
+                    buttons: "سمه ده"
+
+                });
+
+            }
+            else {
+
+                var obj = {
+                    author_id: edit_author_id,
+                    author_firstname: edit_author_firstname,
+                    author_lastname: edit_author_lastname,
+                    author_description: edit_author_description
+                };
+                $.ajax({
+                    url: "/Author/AuthorUpdate",
+                    type: "post",
+                    data: obj,
+                    success: function (response) {
+                        if (response == true) {
+                            swal("په بریالیتوب سره معلومات تغیر شول", "", {
+                                icon: "success",
+                                buttons: "سمه ده"
+
+                            });
+                            document.getElementById("authorNameTDId" + edit_author_id).innerHTML = edit_author_firstname;
+                            document.getElementById("authorNickNameTDId" + edit_author_id).innerHTML = edit_author_lastname;
+                            document.getElementById("DescriptionTDId" + edit_author_id).innerHTML = edit_author_description;
+                            showTab("tab1");
+
+                        }
+                        else {
+                            swal("ستونزه رامنځته شوه", "Error: ", {
+                                icon: "error",
+                                buttons: "سمه ده"
+                            });
+                        }
+
+                    },
+                    error: function (err) {
+                        swal("ستونزه رامنځته شوه", "Error: ", {
+                            icon: "exception",
+                            buttons: "سمه ده"
+                        });
+
+                    }
+
+
+                });
+            }
+
+
+
+        }
+
+
+    </script>
+    <script src="~/assets/alert.js"></script>
+</body>
+</html>
+
+

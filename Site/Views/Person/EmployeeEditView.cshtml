@@ -1,0 +1,390 @@
+﻿@model Site.Models.Person
+
+<html>
+<head>
+
+</head>
+<body>
+
+    <div class="note note-success">
+
+        <h3 style="color: gray; font-weight:bold; text-align:center;"> د کارمند د تغیرولو فورم</h3>
+    </div>
+    <div>
+        <form>
+            <div class="row">
+                <input type="hidden" id="employee_id"  value="@Model.person_id"/>
+                <div class="col-md-1"></div>
+                <div class="form-group col-md-11">
+                    <div class="col-md-2 ">
+
+                        <label style="font-size:20px">تذکري نمبر</label>
+
+                    </div>
+
+                    <div class=" col-md-6">
+                        <input type="text" class="form-control col-md-6" name="employee_idcardnumber" id="employee_idcardnumber" style="border-radius:6px;" placeholder="تذکري نمبر" value="@Model.person_idCard" />
+                        <br />
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-1"></div>
+                <div class="form-group col-md-11">
+                    <div class="col-md-2 ">
+
+                        <label style="font-size:20px">نوم</label>
+
+                    </div>
+
+                    <div class=" col-md-6">
+                        <input type="text" class="form-control col-md-6" name="employee_name" id="employee_name" style="border-radius:6px;" placeholder="نوم" value="@Model.person_firstname" />
+                        <br />
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-1"></div>
+                <div class="form-group col-md-11">
+                    <div class="col-md-2 ">
+
+                        <label style="font-size:20px">تخلص</label>
+
+                    </div>
+
+                    <div class=" col-md-6">
+                        <input type="text" class="form-control col-md-6" name="employee_lastname" id="employee_lastname" style="border-radius:6px;" placeholder="تخلص" value="@Model.person_lastname" />
+                        <br />
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-1"></div>
+                <div class="form-group col-md-11">
+                    <div class="col-md-2 ">
+
+                        <label style="font-size:20px">پلار نوم</label>
+
+                    </div>
+
+                    <div class=" col-md-6">
+                        <input type="text" class="form-control col-md-6" name="employee_fathername" id="employee_fathername" style="border-radius:6px;" placeholder="پلار نوم" value="@Model.person_father_name" />
+                        <br />
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-1"></div>
+                <div class="form-group col-md-11">
+                    <div class="col-md-2 ">
+
+                        <label style="font-size:20px">دنده</label>
+
+                    </div>
+
+                    <div class=" col-md-6">
+                        <input type="text" class="form-control col-md-6" name="employee_state" id="employee_state" style="border-radius:6px;" placeholder="دنده " value="@Model.person_state" />
+                        <br />
+
+                    </div>
+
+                </div>
+
+
+                <div class="col-md-1"></div>
+                <div class="form-group col-md-11">
+                    <div class="col-md-2 ">
+
+                        <label style="font-size:20px">جنس</label>
+
+                    </div>
+
+                    <div class=" col-md-6">
+
+                        <select class="form-control" style="padding:5px; border-radius:6px;" id="employee_gender">
+                            @{
+
+                                if (Model.gender == "نارینه")
+                                {
+                                    <option style="font-size:24px;" value="نارینه" selected>نارینه </option>
+                                }
+                                else
+                                {
+                                    <option style="font-size:24px;" value="نارینه">نارینه </option>
+                                }
+                                if (Model.gender == "ښځینه")
+                                {
+                                    <option style="font-size:24px;" value="ښځینه" selected>ښځینه </option>
+                                }
+                                else
+                                {
+                                    <option style="font-size:24px;" value="ښځینه">ښځینه </option>
+                                }
+                            }
+
+
+
+                        </select>
+                        <br />
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-1"></div>
+                <div class="form-group col-md-11">
+                    <div class="col-md-2 ">
+
+                        <label style="font-size:20px">پوهنتون</label>
+
+                    </div>
+
+                    <div class=" col-md-6">
+                        <input type="text" class="form-control col-md-6" name="employee_university" id="employee_university" style="border-radius:6px;" placeholder="پوهنتون" value="@Model.university" />
+                        <br />
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-1"></div>
+                <div class="form-group col-md-11">
+                    <div class="col-md-2 ">
+
+                        <label style="font-size:20px">پوهنځی</label>
+
+                    </div>
+
+                    <div class=" col-md-6">
+                        <input type="text" class="form-control col-md-6" name="employee_faculty" id="employee_faculty" style="border-radius:6px;" placeholder="پوهنځی"  value="@Model.faculty"/>
+                        <br />
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-1"></div>
+                <div class="form-group col-md-11">
+                    <div class="col-md-2 ">
+
+                        <label style="font-size:20px">تیلیفون شماره</label>
+
+                    </div>
+
+                    <div class=" col-md-6">
+                        <input type="number" class="form-control col-md-6" name="employee_phonenumber" id="employee_phonenumber" style="border-radius:6px;" placeholder="تلیفون شماره" value="@Model.phone_number" />
+                        <br />
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-1"></div>
+                <div class="form-group col-md-11">
+                    <div class="col-md-2 ">
+
+                        <label style="font-size:20px">ایمیل</label>
+
+                    </div>
+
+                    <div class=" col-md-6">
+                        <input type="email" class="form-control col-md-6" name="employee_email" id="employee_email" style="border-radius:6px;" placeholder="ایمیل" value="@Model.email" />
+                        <br />
+
+                    </div>
+
+                </div>
+                <div class="col-md-8">
+                    <button type="button" class="btn green mt-ladda-btn ladda-button btn-outline pull-right" data-style="slide-down" data-spinner-color="#333" style="padding:6px 20px 6px 20px;" onclick="UpdateRecord()">
+                        <span class="ladda-label">
+                            <i id="icon" class="fa fa-save"></i> ثبتول
+                        </span>
+                        <span class="ladda-spinner"></span>
+                    </button>
+                </div>
+
+            </div>
+        </form>
+    </div>
+
+
+    <script type="text/javascript">
+
+        function UpdateRecord() {
+            var id = document.getElementById("employee_id").value;
+            var idcard = document.getElementById("employee_idcardnumber").value;
+            var firstname = document.getElementById("employee_name").value;
+            var lastname = document.getElementById("employee_lastname").value;
+            var fathername = document.getElementById("employee_fathername").value;
+            var state = document.getElementById("employee_state").value;
+            var gender = document.getElementById("employee_gender").value;
+            var university = document.getElementById("employee_university").value;
+            var faculty = document.getElementById("employee_faculty").value;
+           
+            var phonenumber = document.getElementById("employee_phonenumber").value;
+            var email = document.getElementById("employee_email").value;
+            var emailPatteren = new RegExp("^[^\\s]+" + String.fromCharCode(64) + "[^\\s]+\\.[^\\s]+$");
+
+            if (idcard == "") {
+                document.getElementById("employee_idcardnumber").style.border = "1px solid red";
+                document.getElementById("employee_idcardnumber").focus();
+            }
+            else if (firstname == "") {
+                document.getElementById("employee_name").style.border = "1px solid red";
+                document.getElementById("employee_name").focus();
+            }
+            else if (/^\d+$/.test(firstname)) {
+                swal(" نوم صحیح ولیکئ", "", {
+                    icon: "error",
+                    buttons: "سمه ده"
+
+                });
+                document.getElementById("employee_name").style.border = "1px solid red";
+                document.getElementById("employee_name").focus();
+            }
+            else if (lastname == "") {
+                document.getElementById("employee_lastname").style.border = "1px solid red";
+                document.getElementById("employee_lastname").focus();
+            }
+            else if (/^\d+$/.test(lastname)) {
+                swal(" تخلص صحیح ولیکئ", "", {
+                    icon: "error",
+                    buttons: "سمه ده"
+
+                });
+                document.getElementById("employee_lastname").style.border = "1px solid red";
+                document.getElementById("employee_lastname").focus();
+            }
+            else if (fathername == "") {
+                document.getElementById("employee_fathername").style.border = "1px solid red";
+                document.getElementById("employee_fathername").focus();
+            }
+            else if (/^\d+$/.test(fathername)) {
+                swal("د پلار نوم صحیح ولیکئ", "", {
+                    icon: "error",
+                    buttons: "سمه ده"
+
+                });
+                document.getElementById("employee_fathername").style.border = "1px solid red";
+                document.getElementById("employee_fathername").focus();
+            }
+            else if (state == "") {
+                document.getElementById("employee_state").style.border = "1px solid red";
+                document.getElementById("employee_state").focus();
+            }
+            else if (/^\d+$/.test(state)) {
+                swal("د کارمند دنده صحیح ولیکئ", "", {
+                    icon: "error",
+                    buttons: "سمه ده"
+
+                });
+                document.getElementById("employee_state").style.border = "1px solid red";
+                document.getElementById("employee_state").focus();
+            }
+
+            else if (gender == "") {
+                document.getElementById("employee_gender").style.border = "1px solid red";
+                document.getElementById("employee_gender").focus();
+            }
+            else if (university == "") {
+                document.getElementById("employee_university").style.border = "1px solid red";
+                document.getElementById("employee_university").focus();
+            }
+            else if (/^\d+$/.test(university)) {
+                swal("د پوهنتون نوم صحیح ولیکئ", "", {
+                    icon: "error",
+                    buttons: "سمه ده"
+
+                });
+                document.getElementById("employee_university").style.border = "1px solid red";
+                document.getElementById("employee_university").focus();
+            }
+            else if (faculty == "") {
+                document.getElementById("employee_faculty").style.border = "1px solid red";
+                document.getElementById("employee_faculty").focus();
+            }
+            else if (/^\d+$/.test(faculty)) {
+                swal("د پوهنځي نوم صحیح ولیکئ", "", {
+                    icon: "error",
+                    buttons: "سمه ده"
+
+                });
+                document.getElementById("employee_faculty").style.border = "1px solid red";
+                document.getElementById("employee_faculty").focus();
+            }
+            
+            else if (phonenumber == "") {
+                document.getElementById("employee_phonenumber").style.border = "1px solid red";
+                document.getElementById("employee_phonenumber").focus();
+            }
+            else if (!((phonenumber.startsWith("07") && phonenumber.length === 10) || (phonenumber.startsWith("0093") && phonenumber.length === 13))) {
+                swal("صحیح شماره ولیکئ", "", {
+                    icon: "error",
+                    buttons: "سمه ده"
+
+                });
+                document.getElementById("employee_phonenumber").style.border = "1px solid red";
+                document.getElementById("employee_phonenumber").focus
+            }
+            else if (email != "" && !emailPatteren.test(email)) {
+                swal("صحیح ایمیل ولیکئ", "", {
+                    icon: "error",
+                    buttons: "سمه ده"
+
+                });
+                document.getElementById("employee_email").style.border = "1px solid red";
+                document.getElementById("employee_email").focus();
+            }
+            else {
+                
+                var obj = {
+                    person_id: id,
+                    person_idCard: idcard,
+                    person_firstname: firstname,
+                    person_lastname: lastname,
+                    person_father_name: fathername,
+                    person_state: state,
+                    gender: gender,
+                    university: university,
+                    faculty: faculty,
+                    department: '',
+                    phone_number: phonenumber,
+                    email: email
+                };
+                $.ajax({
+                    url: "/Person/EmployeeEdit",
+                    type: "post",
+                    data: obj,
+                    success: function (response) {
+                        if (response == true) {
+
+                            window.location.href = "/Person/EmployeeView";
+                        }
+                        else {
+                            swal("ستونزه رامنځته شوه", "", {
+                                icon: "error",
+                                buttons: "سمه ده"
+
+                            });
+                        }
+                    },
+                    error: function (err) {
+                        swal("ستونزه رامنځته شوه", "", {
+                            icon: "error",
+                            buttons: "سمه ده"
+
+                        });
+                    }
+                });
+            }
+
+
+        }
+    </script>
+    <script src="~/assets/alert.js"></script>
+</body>
+</html>

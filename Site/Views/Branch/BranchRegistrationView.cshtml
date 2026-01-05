@@ -1,0 +1,445 @@
+﻿@model  IEnumerable<Site.Models.Branch>
+
+
+@{
+    if (Session["user"] != null)
+    {
+        if (Session["user"].ToString() == "authenticated")
+        {
+            if (Session["level"].ToString() == "admin")
+            {
+                Layout = "~/Views/Shared/_AdminLayout.cshtml";
+            }
+            if (Session["level"].ToString() == "director")
+            {
+                Layout = "~/Views/Shared/_UserLayout.cshtml";
+            }
+        }
+        else if (Session["user"].ToString() == "locked")
+        {
+            // Redirect to lock sreen page using javascript
+            <script>
+                    window.location.href = '@Url.Action("LockScreen","User")';
+            </script>
+        }
+
+    }
+    else
+    {
+        <script>
+    window.location.href = '@Url.Action("LoginView","User")';
+        </script>
+    }
+
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+
+
+}
+
+<html>
+<head>
+    <style>
+        .centered-form {
+            position: absolute;
+            top: 15%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .centered-table {
+            position: absolute;
+            top: 30%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+<body>
+    <div class="note note-success">
+
+        <h3 style="color: gray; font-weight:bold; text-align: center">شعبه ثبت کړې  </h3>
+    </div>
+    <div>
+
+        <form id="branchInfo" role="form" method="post">
+            <div class="row">
+                <div class="col-md-3 col-lg-2">
+
+                    <label style="font-size:25px">د شعبی نوم</label>
+
+                </div>
+                <div class=" col-md-5 ">
+
+
+                    <input type="text" class="form-control" name="branch_name" id="branch_name" style="border-radius: 6px;" placeholder="د شعبی نوم" value="" />
+
+
+
+                </div>
+                <div class="col-md-3 col-lg-1">
+
+                    <button type="submit" id="update" class="btn green mt-ladda-btn ladda-button btn-outline " data-style="slide-down" data-spinner-color="#333" style="padding:6px 20px 6px 20px;" onclick="submitForm()">
+                        <span class="ladda-label">
+                            <i id="icon" class="fa fa-save"></i> ثبتول
+                        </span>
+                        <span class="ladda-spinner"></span>
+                    </button>
+
+                </div>
+
+
+                <div class="col-md-3 col-lg-1">
+
+                    <button class="btn green mt-ladda-btn ladda-button btn-outline " id="AddRecord" data-style="slide-down" data-spinner-color="#333" style="padding:6px 20px 6px 20px; display:none;">
+                        <span class="ladda-label">
+                            <i id="icon" class="fa fa-save"></i> شعبه ثبتول
+                        </span>
+                        <span class="ladda-spinner"></span>
+                    </button>
+
+                </div>
+
+
+
+            </div>
+
+        </form>
+    </div><br />
+
+
+
+
+
+
+
+
+    @* code for showing branch information*@
+
+    <div class="row">
+        <div class="col-md-12">
+            <!-- BEGIN EXAMPLE TABLE PORTLET-->
+            <div class="portlet box green">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="fa fa-globe"></i>Row & Column Reordering
+                    </div>
+                    <div class="tools"> </div>
+                </div>
+
+                <div class="portlet-body">
+
+                    <table class="table table-striped table-bordered table-hover" id="sample_2">
+                        <thead>
+                            <tr>
+                                <th> شماره</th>
+                                <th> د شعبي نوم </th>
+                                <th> عمل </th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr id="newRow" style="height:0">
+                                <td style="height:0;padding:0"></td>
+                                <td style="height:0;padding:0"></td>
+                                <td style="height:0;padding:0"></td>
+                            </tr>
+
+                            @{
+                                var branchNameTDId = "";
+                                var branchIdTDId = "";
+                                foreach (var item in Model)
+                                {
+                                    branchIdTDId = "branchIdTDId" + item.branch_id;
+                                    branchNameTDId = "branchNameTDId" + item.branch_id;
+                                    <tr id="@item.branch_id">
+                                        <td id="@branchIdTDId">@item.branch_id</td>
+                                        <td id="@branchNameTDId">@item.branch_name</td>
+                                        <td>
+                                            <button type="button" class="btn green mt-ladda-btn ladda-button btn-outline" data-style="slide-down" data-spinner-color="#333" onclick="updateRecord(@item.branch_id)">
+                                                <span class="ladda-label">
+                                                    <i class="fa fa-edit"></i> تغیرات
+                                                </span>
+                                                <span class="ladda-spinner"></span>
+                                            </button>
+
+                                            <button type="button" class="btn red mt-ladda-btn ladda-button btn-outline" data-style="slide-down" data-spinner-color="#333" onclick="deleteBranch(@item.branch_id)">
+                                                <span class="ladda-label">
+                                                    <i class="fa fa-trash"></i> حذف
+                                                </span>
+                                                <span class="ladda-spinner"></span>
+                                            </button>
+                                        </td>
+                                    </tr>
+
+                                }
+
+                            }
+
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+            </div>
+            <!-- END EXAMPLE TABLE PORTLET-->
+        </div>
+    </div>
+
+
+    <script type="text/javascript">
+
+
+        var branchId = 0;
+        function Empty() {
+            var branch_name = document.getElementById('branch_name');
+            branch_name.value = "";
+        }
+
+        function submitForm() {
+            event.preventDefault();
+
+            var branchName = document.getElementById("branch_name").value;
+            var branchTD = document.getElementById("branchNameTDId");
+            if (branchName == "") {
+
+                document.getElementById("branch_name").style.border = "1px solid red";
+
+            }
+            else if (/^\d+$/.test(branchName)) {
+                swal("د شعبي نوم صحیح ولیکئ", "", {
+                    icon: "error",
+                    buttons: "سمه ده"
+
+                });
+                document.getElementById("branch_name").style.border = "1px solid red";
+            }
+            else {
+
+                var name = branchName;
+
+                if (document.getElementById("update").innerHTML == "تغیرول") {
+
+
+                    if (document.getElementById("branch_name").value == "") {
+                        swal("لطفا د شعبي نوم ولیکې", "", {
+                            icon: "info",
+                            buttons: "سمه ده",
+
+                        });
+
+                    }
+                    else {
+
+                        $.ajax({
+                            url: "/Branch/BranchUpdate",
+                            type: 'post',
+                            data: { branch_id: branchId, branch_name: name },
+                            success: function (response) {
+
+                                if (typeof response === 'string') {
+
+                                    swal("په بریالیتوب سره معلومات تغیر شول", "", {
+                                        icon: "success",
+                                        buttons: "سمه ده",
+                                        url: "/Branch/BranchRegistration"
+
+
+                                    });
+                                    document.getElementById("AddRecord").style.display = "none";
+                                    document.getElementById('branchNameTDId' + branchId).innerHTML = response;
+                                    Empty();
+                                }
+                                else if (response == false) {
+                                    swal(branch_name + " مخکې نه ثبت شوی دی", "", {
+                                        icon: "error",
+                                        buttons: "سمه ده"
+
+                                    });
+                                }
+                                else {
+
+                                }
+                            },
+                            error: function (error) {
+
+                                swal("ستونزه رامنځته شوه", "Error: ", {
+                                    icon: "error",
+                                    buttons: "سمه ده"
+                                });
+                            }
+                        });
+
+
+                    }
+
+                }
+                else {
+                    $.ajax({
+                        type: 'POST',
+                        url: '/Branch/BranchRegistration',
+                        data: { branch_name: branchName },
+                        success: function (data) {
+
+                            if (data.branch_name) {
+
+                                var afterTargetTag = document.querySelector('#newRow');
+
+                                // Create the HTML structure you want to insert
+                                const newHtmlContent = `<tr id="` + data.branch_id + `">
+                                            <td id="branchIdTDId`+ data.branch_id + `">` + data.branch_id + `</td>
+                                            <td id="branchNameTDId`+ data.branch_id + `">` + data.branch_name + `</td>
+                                            <td>
+                                                <button type="button" id = "update" class="btn green mt-ladda-btn ladda-button btn-outline" data-style="slide-down" data-spinner-color="#333"  onclick="updateRecord(data.branch_id)">
+                                                    <span class="ladda-label">
+                                                        <i id ="icon" class="fa fa-edit"></i> تغیرات
+                                                    </span>
+                                                    <span class="ladda-spinner"></span>
+                                                </button>
+
+                                                <button type="button" class="btn red mt-ladda-btn ladda-button btn-outline" data-style="slide-down" data-spinner-color="#333" onclick="DeleteBranch(data.branch_id)>
+                                                    <span class="ladda-label">
+                                                        <i class="fa fa-trash"></i> حذف
+                                                    </span>
+                                                    <span class="ladda-spinner"></span>
+                                                </button>
+                                            </td>
+                                        </tr>`;
+                                afterTargetTag.insertAdjacentHTML('afterend', newHtmlContent);
+
+
+
+                                swal("په بریالیتوب سره معلومات ثبت شول.", "", {
+                                    icon: "success",
+                                    buttons: "سمه ده"
+
+                                });
+                                Empty();
+                            }
+                            else if (data == "Record already Exist") {
+                                swal("مخکې نه ثبت شوی دی", "", {
+                                    icon: "error",
+                                    buttons: "سمه ده"
+
+
+                                });
+                                Empty();
+
+                            }
+                            else {
+                                swal("ستونزه رامنځته شوه", "", {
+                                    icon: "error",
+                                    buttons: "سمه ده"
+
+                                });
+                                Empty();
+                            }
+
+                        },
+
+                        error: function (error) {
+                            swal("ستونزه رامنځته شوه", "", {
+                                icon: "error",
+                                buttons: "سمه ده"
+
+                            });
+                            Empty();
+
+                        }
+
+                    });
+                }
+
+
+
+
+            }
+        }
+
+
+
+
+        function deleteBranch(id) {
+            swal({
+                title: "ایا تاسو ډاډه یاست؟",
+                text: "یو ځل چې معلومات له منځه لاړل د بیا ځل لپاره یې نشئ ترلاسه کولی!",
+                icon: "warning",
+                buttons: ["نه", "هو"]
+                ,
+                dangerMode: true,
+            })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        // If user clicked yes button
+
+                        $.ajax({
+                            type: 'POST',
+                            url: '/Branch/BranchDelete',
+                            data: { id: id },
+                            success: function (response) {
+                                if (response == true) {
+
+                                    const elementToRemove = document.getElementById('' + id);
+
+                                    elementToRemove.remove();
+                                    swal("په بریالیتوب سره معلومات له سېسټم څخه لرې شو.", "", {
+                                        icon: "success",
+                                        buttons: "سمه ده"
+
+                                    });
+
+                                }
+                                else if (response == false) {
+                                    swal("په دي شعبي کتاب ثبت دې", "", {
+                                        icon: "error",
+                                        buttons: "سمه ده"
+                                    });
+                                }
+                                else {
+                                    swal("ستونزه رامنځته شوه", "Exception: " + response.responseText, {
+                                        icon: "error",
+                                        buttons: "سمه ده"
+                                    });
+                                }
+
+
+                            },
+                            error: function (error) {
+                                swal("ستونزه رامنځته شوه", "Error: " + error.responseText, {
+                                    icon: "error",
+                                    buttons: "سمه ده"
+                                });
+                            }
+                        });
+
+
+
+
+                    } else {
+                        swal("معلومات خوندي پاتې شول!", "", { icon: "info", buttons: "سمه ده" });
+                    }
+                });
+        }
+
+
+
+        ///// code for update Branch
+
+        function updateRecord(id) {
+            branchId = document.getElementById("branchIdTDId" + id).innerHTML;
+            var branch_name = document.getElementById("branchNameTDId" + id).innerHTML;
+            document.getElementById("branch_name").value = branch_name;
+            var button = document.getElementById("update");
+            button.innerHTML = "تغیرول";
+
+
+            document.getElementById("AddRecord").style.display = "block";
+
+
+
+        }
+
+    </script>
+    <script src="~/assets/alert.js"></script>
+</body>
+</html>

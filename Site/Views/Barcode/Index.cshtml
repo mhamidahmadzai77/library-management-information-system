@@ -1,0 +1,15 @@
+﻿@{
+    Layout = "";
+
+    
+}
+<html>
+<head>
+    <title></title>
+</head>
+<body onload="window.print();">
+    <div style="width: 200px; height: 100px; border: 1px solid black;">
+        <img src="@Url.Action("Index", "Barcode", new { barcodeText = "123456789" })" alt="Barcode Image" />
+    </div>
+</body>
+</html>

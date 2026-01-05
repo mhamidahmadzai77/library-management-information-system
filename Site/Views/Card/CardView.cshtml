@@ -1,0 +1,199 @@
+﻿@model Site.Models.Person
+<html>
+<head>
+    <style>
+        .card_upper_text {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+       label{
+           font-size: 16px;
+           font-weight: bold;
+       }
+       
+    </style>
+    <link href="~/assets/print.css" rel="stylesheet" />
+
+</head>
+<body>
+
+   @* <div class="print-section" style="width: 500px; height:280px; border: 1px solid aqua;">
+        <form action="/" method="post">
+            <div class="row">
+
+                <div class="col-md-12">
+                    <div class="form-group col-md-1 ">
+                        <img src="~/assets/pic/wazaratTahselatAli.png" style="width: 100px; height: 100px;" />
+                    </div>
+
+                    <div class="form-group col-md-8" style="text-align: center; padding-left: 20px;">
+
+                        <h4>  د افغانستان اسلامي امارت</h4>
+
+                        <h4>
+                            لو‌ړو زده کړو وزارت
+
+                        </h4>
+                        <h4>
+                            ننګرهار پوهنتون
+                        </h4>
+
+                    </div>
+                    <div class="form-group col-md-2">
+                        <img src="~/assets/pic/nangarharuniversity.png" style="width: 90px; height: 90px; " />
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="col-md-3">
+
+                        <label>نوم:</label>
+
+                    </div>
+                    <div class="col-md-4">
+                        <label>@Model.person_firstname</label>
+                    </div>
+                </div>
+
+            </div>
+        </form>
+    </div>*@
+    
+    <div  style="width: 500px; height: 280px; border: 1px solid blue;" class="print-section">
+
+        <div class="row">
+            <div class="col-md-1 center-align">
+
+                <img src="~/assets/pic/wazaratTahselatAli.png" style="width: 90px; height: 90px;" />
+            </div>
+            <div class="col-md-8 card_upper_text center-block" style="text-align: center;">
+
+                <div>
+                    د افغانستان اسلامي امارت
+
+                </div>
+                <div>
+                    لو‌ړو زده کړو وزارت
+
+                </div>
+                <div>
+                    ننګرهار پوهنتون
+                </div>
+
+
+
+            </div>
+            <div class="col-md-1 ">
+                <img src="~/assets/pic/nangarharuniversity.png" style="width: 90px; height: 90px; " />
+            </div>
+
+        </div>
+        
+        <div class="row"></div><br />
+
+        <div class="row">
+
+            <div class="col-md-12">
+
+                <div class="col-md-4">
+                    <label>نوم:</label>
+
+
+                </div>
+                <div class="col-md-4">
+                    <label>@Model.person_firstname</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="col-md-12">
+
+                <div class="col-md-4">
+                    <label>پلار نوم:</label>
+
+
+                </div>
+                <div class="col-md-4">
+                    <label>@Model.person_father_name</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="col-md-12">
+
+                <div class="col-md-4">
+                    <label>څانګه/اداره:</label>
+
+
+                </div>
+                <div class="col-md-4">
+                    <label>@Model.department</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="col-md-12">
+
+                <div class="col-md-4">
+                    <label>دنده:</label>
+
+
+                </div>
+                <div class="col-md-4">
+                    <label>@Model.person_state</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="col-md-12">
+
+                <div class="col-md-4">
+                    <label>مبایل شماره:</label>
+
+
+                </div>
+                <div class="col-md-4">
+                    <label>@Model.phone_number</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="col-md-12">
+
+                <div class="col-md-4">
+                    <label>اعتبار نیټه:</label>
+
+
+                </div>
+                <div class="col-md-4">
+                    <label></label>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+    <div class="no-print">
+        <button type="button" onclick="window.print()">PrintButton</button>
+    </div>
+    
+
+    
+
+
+</body>
+</html>

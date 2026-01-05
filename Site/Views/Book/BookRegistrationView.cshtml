@@ -1,0 +1,505 @@
+﻿
+@{
+    if (Session["user"] != null)
+    {
+        if (Session["user"].ToString() == "authenticated")
+        {
+            if (Session["level"].ToString() == "admin")
+            {
+                Layout = "~/Views/Shared/_AdminLayout.cshtml";
+            }
+            if (Session["level"].ToString() == "director")
+            {
+                Layout = "~/Views/Shared/_UserLayout.cshtml";
+            }
+        }
+        else if (Session["user"].ToString() == "locked")
+        {
+            // Redirect to lock sreen page using javascript
+            <script>
+                window.location.href = '@Url.Action("LockScreen","User")';
+            </script>
+        }
+
+    }
+    else
+    {
+<script>
+    window.location.href = '@Url.Action("LoginView","User")';
+</script>
+    }
+
+Layout = "~/Views/Shared/_AdminLayout.cshtml";
+
+
+
+}
+
+<!DOCTYPE html>
+<!--
+Template Name: Metronic - Responsive Admin Dashboard Template build with Twitter Bootstrap 3.3.6
+Version: 4.6
+Author: KeenThemes
+Website: http://www.keenthemes.com/
+Contact: support@keenthemes.com
+Follow: www.twitter.com/keenthemes
+Dribbble: www.dribbble.com/keenthemes
+Like: www.facebook.com/keenthemes
+Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes
+Renew Support: http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes
+License: You must have a valid license purchased only from themeforest(the above link) in order to legally use the theme for your project.
+-->
+<!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en" dir="rtl">
+<!--<![endif]-->
+<!-- BEGIN HEAD -->
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <meta content="" name="description" />
+    <meta content="" name="author" />
+
+    <script src="~/assets/global/plugins/select2/js/select2.full.min.js" type="text/javascript"></script>
+
+</head>
+<!-- END HEAD -->
+
+<body>
+
+
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="portlet light bordered" id="form_wizard_1">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class=" icon-layers font-red"></i>
+                        <span class="caption-subject font-red bold uppercase">
+                            د کتاب ثبتول -
+                            <span class="step-title"> Step 1 of 4 </span>
+                        </span>
+                    </div>
+                    <div class="actions">
+                        <a class="btn btn-circle btn-icon-only btn-default" href="javascript:;">
+                            <i class="icon-cloud-upload"></i>
+                        </a>
+                        <a class="btn btn-circle btn-icon-only btn-default" href="javascript:;">
+                            <i class="icon-wrench"></i>
+                        </a>
+                        <a class="btn btn-circle btn-icon-only btn-default" href="javascript:;">
+                            <i class="icon-trash"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="portlet-body form">
+                    <form class="form-horizontal" action="#" id="submit_form" method="POST">
+                        <div class="form-wizard">
+                            <div class="form-body">
+                                <ul class="nav nav-pills nav-justified steps">
+                                    <li>
+                                        <a href="#tab1" data-toggle="tab" class="step">
+                                            <span class="number"> 1 </span>
+                                            <span class="desc">
+                                                <i class="fa fa-check"></i> د کتاب مشخصات
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#tab2" data-toggle="tab" class="step">
+                                            <span class="number"> 2 </span>
+                                            <span class="desc">
+                                                <i class="fa fa-check"></i> جلدونه او چاپونه
+                                            </span>
+
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#tab3" data-toggle="tab" class="step active">
+                                            <span class="number"> 3 </span>
+                                            <span class="desc">
+                                                <i class="fa fa-check"></i> د هر چاپ مشخصات
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#tab4" data-toggle="tab" class="step">
+                                            <span class="number"> 4 </span>
+                                            <span class="desc">
+                                                <i class="fa fa-check"></i> تایید
+                                            </span>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <div id="bar" class="progress progress-striped active" role="progressbar">
+                                    <div class="progress-bar progress-bar-success "> </div>
+                                </div>
+                                <div class="tab-content">
+                                    <div class="alert alert-danger display-none">
+                                        <button class="close" data-dismiss="alert"></button> ستاسو په فورم کې مشکل دی. یو ځل یې وګورئ.
+                                    </div>
+                                    <div class="alert alert-success display-none">
+                                        <button class="close" data-dismiss="alert"></button> د فورم معلومات مو سم شول
+                                    </div>
+                                    <div class="tab-pane active" id="tab1">
+                                        <h3 class="block">د کتاب عمومي مشخصات داخل کړئ</h3>
+
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3">
+                                                د کتاب نړیوال نمبر
+                                            </label>
+                                            <div class="col-md-6">
+                                                <input type="text" class="form-control" name="ISBN" id="ISBN" />
+                                                <span class="help-block"> د ISBN نمبر ولیکئ. </span>
+                                            </div>
+                                        </div> 
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3">
+                                                د کتاب دیوي نمبر
+                                            </label>
+                                            <div class="col-md-6">
+                                                <input type="text" class="form-control" name="DDC" id="DDC" />
+                                                <span class="help-block"> د DDC نمبر ولیکئ. </span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3">
+                                                د کتاب کنګرس نمبر
+                                            </label>
+                                            <div class="col-md-6">
+                                                <input type="text" class="form-control" name="LLC" id="LLC" />
+                                                <span class="help-block"> د LLC نمبر ولیکئ.  </span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3">
+                                                د کتاب نوم
+                                                <span class="required"> * </span>
+                                            </label>
+                                            <div class="col-md-6">
+                                                <input type="text" class="form-control" name="name" id="name" value="" />
+                                                <span class="help-block">  دکتاب نوم ولیکئ. </span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3">
+                                                د ژباړونکي نوم
+                                            </label>
+                                            <div class="col-md-6">
+                                                <input type="text" class="form-control" name="translator" id="translator" />
+                                                <span class="help-block"> د ژباړونکي نوم ولیکئ.  </span>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3">
+                                                شعبه
+                                                <span class="required"> * </span>
+                                            </label>
+                                            <div class="col-md-6 ">
+                                                <select name="branch" id="branch" class="form-control">
+                                                    @foreach (var branch in ViewBag.branch)
+                                                    {
+                                                        <option value="@branch.branch_id">@branch.branch_name</option>
+
+                                                    }
+                                                </select>
+                                                <span class="help-block"> شعبه انتخاب کړئ  </span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3">
+                                                د کتاب ډول
+                                                <span class="required"> * </span>
+                                            </label>
+                                            <div class="col-md-6">
+                                                <select name="bookType" id="bookType" class="form-control select bootstrap-select">
+                                                    <option selected value="Text Book">Text Book</option>
+                                                    <option value="Reference Book">Reference Book</option>
+                                                    <option value="Peotry">Peotry</option>
+                                                    <option value="Novel">Novel</option>
+                                                    <option value="Biography">Biography</option>
+                                                    <option value="Art and Photography">Art and Photography</option>
+                                                    <option value="Spanish">Spanish</option>
+                                                </select>
+                                                <span class="help-block">  د کتاب ډول انتخاب کړئ. </span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3">
+                                                ژبه
+                                                <span class="required"> * </span>
+                                            </label>
+                                            <div class="col-md-6">
+                                                <select name="language" id="language" class="form-control select bootstrap-select">
+                                                    <option value="پښتو">پښتو</option>
+                                                    <option value="دری">دری</option>
+                                                    <option value="فارسی">فارسی</option>
+                                                    <option value="English">English</option>
+                                                    <option value="عربی">عربی</option>
+                                                    <option value="اردو">اردو</option>
+                                                    <option value="Spanish">Spanish</option>
+                                                </select>
+                                                <span class="help-block">  د کتاب ژبه انتخاب کړئ. </span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3">
+                                                اضافه معلومات
+                                            </label>
+                                            <div class="col-md-6">
+                                                <textarea class="form-control" rows="3" name="description" id="description"></textarea>
+                                                <span class="help-block">  کتاب په اړه نور معلومات ولیکئ.  </span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3">لیکوالان</label>
+                                            <div class="input-group select2-bootstrap-prepend col-md-6">
+
+                                                <select id="select2-disabled-inputs-multiple" name="authors" class="form-control select2-multiple" multiple>
+                                                    @foreach (var author in ViewBag.author)
+                                                    {
+                                                        <option value="@author.author_id">@author.author_firstname @author.author_lastname</option>
+                                                    }
+                                                </select>
+                                                <span class="help-block">  د لیکوالانو نومونه انتخاب کړئ </span>
+
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3">
+                                                د وړنې اجازه
+                                            </label>
+                                            <div class="col-md-6">
+                                                <div class="portlet light form-fit " style="margin-left:-5%;">
+                                                    <div class="portlet-title">
+                                                        <div class="actions">
+                                                            <input type="checkbox" checked id="referenceBook" class="make-switch" data-on="success" data-on-color="success" data-off-color="danger" data-size="small">
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane" id="tab2" style="height:auto;height:max-content;">
+                                        <h3 class="block">جلدونه او چاپونه مشخص کړئ</h3>
+
+                                        <div class="form-group segment">
+                                            <label class="control-label col-md-3">
+                                                جلدونه
+                                                <span class="required"> * </span>
+                                            </label>
+                                            <div class="col-md-6">
+                                                <select name="segment" id="segment" class="form-control select bootstrap-select">
+                                                    @for (int i = 1; i <= 50; i++)
+                                                    {
+                                                        <option value="@i">@i</option>
+                                                    }
+                                                </select>
+                                                <span class="help-block">  د جلدونو تعداد انتخاب کړئ </span>
+                                            </div>
+                                        </div>
+                                        <hr class="endOfSegments" />
+
+
+                                    </div>
+
+                                    <div class="tab-pane" id="tab3">
+                                        <h3 class="block">د هر چاپ یا ایډېشن معلومات </h3>
+
+                                        <div id="tabNo3"></div>
+
+
+                                    </div>
+                                    <div class="tab-pane" id="tab4">
+                                        <h3 class="block">د کتاب معلومات تأیید کړئ</h3>
+                                        <h4 class="form-section"> د کتاب مشخصات</h4>
+                                        <div class="row">
+                                            <div class="col-md-1"></div>
+                                            <div class="col-md-10">
+                                                <div class="form-group">
+                                                    <div class="col-md-2">
+                                                        <label class="control-label "> د کتاب نړیوال نمبر : </label>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <p class="form-control-static" data-display="ISBN"> </p>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="col-md-2">
+                                                        <label class="control-label ">د کتاب دیوي نمبر : </label>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <p class="form-control-static" data-display="DDC"> </p>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="col-md-2">
+                                                        <label class="control-label ">د کتاب کنګرس نمبر : </label>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <p class="form-control-static" data-display="LLC"> </p>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="col-md-2">
+                                                        <label class="control-label ">د کتاب نوم : </label>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <p class="form-control-static" data-display="name"> </p>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="col-md-2">
+                                                        <label class="control-label ">د ژباړونکي نوم : </label>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <p class="form-control-static" data-display="translator"> </p>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="col-md-2">
+                                                        <label class="control-label "> شعبه : </label>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <p class="form-control-static" data-display="branch"> </p>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="col-md-2">
+                                                        <label class="control-label "> ژبه : </label>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <p class="form-control-static" data-display="language"> </p>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="col-md-2">
+                                                        <label class="control-label "> اضافه معلومات : </label>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <p class="form-control-static" data-display="description"> </p>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="col-md-2">
+                                                        <label class="control-label ">لیکوالان : </label>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <p class="form-control-static" data-display="authors"> </p>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                        <h4 class="form-section">جلدونه او چاپونه له مشخصاتو سره یې</h4>
+                                        <div id="bookProperties"></div>
+                                        <div class="table-scrollable">
+                                            <table class="table table-hover table-light " id="editionDetailTable">
+                                                <thead class="bg-blue-oleo bg-font-blue-oleo">
+                                                    <tr>
+                                                        <th class="bg-font-blue-oleo"> # </th>
+                                                        <th class="bg-font-blue-oleo" style="min-width:150px;">  کتاب نوم </th>
+                                                        <th class="bg-font-blue-oleo"> جلد </th>
+                                                        <th class="bg-font-blue-oleo"> چاپ </th>
+                                                        <th class="bg-font-blue-oleo"> د تأسیس ځل </th>
+                                                        <th class="bg-font-blue-oleo"> د تأسیس ځای </th>
+                                                        <th class="bg-font-blue-oleo" style="min-width:100px;"> مطبعه </th>
+                                                        <th class="bg-font-blue-oleo"> تعداد </th>
+                                                        <th class="bg-font-blue-oleo"> صفحې </th>
+                                                        <th class="bg-font-blue-oleo"> CDs </th>
+                                                        <th class="bg-font-blue-oleo"> د ثبت د تاریخ ډول </th>
+                                                        <th class="bg-font-blue-oleo" style="min-width:100px;"> د ثبت تاریخ </th>
+                                                        <th class="bg-font-blue-oleo"> د چاپ د تاریخ ډول </th>
+                                                        <th class="bg-font-blue-oleo"> د چاپ کال </th>
+                                                        <th class="bg-font-blue-oleo"> د چاپ میاشت </th>
+                                                        <th class="bg-font-blue-oleo"> د چاپ ورځ </th>
+                                                        <th class="bg-font-blue-oleo"> د المارۍ نمبر </th>
+                                                        <th class="bg-font-blue-oleo"> د خانې نمبر </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <template id="tableBody">
+                                                    </template>
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="form-actions">
+                                <div class="row">
+                                    <div class="col-md-offset-3 col-md-9">
+                                        <a href="javascript:;" class="btn default button-previous">
+                                            <i class="fa fa-angle-right"></i> &nbsp;&nbsp;&nbsp;&nbsp;شاته&nbsp;&nbsp;&nbsp;&nbsp;
+                                        </a>
+                                        <a href="javascript:;" onclick="continueButtonEvent()" class="btn btn-outline green button-next">
+                                            &nbsp;&nbsp;&nbsp;&nbsp;ادامه&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <i class="fa fa-angle-left"></i>
+                                        </a>
+                                        <button type="button" class="btn green button-submit">
+                                            &nbsp;&nbsp;&nbsp;&nbsp; ثبت &nbsp;&nbsp;&nbsp;&nbsp;
+                                            <i class="fa fa-check"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="~/assets/pages/scripts/components-select2.min.js" type="text/javascript"></script>
+    <script src="~/assets/global/plugins/select2/js/select2.full.min.js" type="text/javascript"></script>
+
+    <script src="~/Scripts/jquer.js"></script>
+    <script src="~/assets/book/add-book.js"></script>
+    <script src="~/assets/alert.js"></script>
+    <script src="~/assets/book/form-wizard.min.js"></script>
+
+
+    <!--[if lt IE 9]>
+    <script src="~/assets/global/plugins/respond.min.js"></script>
+    <script src="~/assets/global/plugins/excanvas.min.js"></script>
+    <![endif]-->
+    <!-- Google Tag Manager -->
+    <noscript>
+        <iframe src="http://www.googletagmanager.com/ns.html?id=GTM-NGFVTN"
+                height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <script>
+        (function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    '../../../../../www.googletagmanager.com/gtm5445.html?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-NGFVTN');</script>
+    <!-- End Google Tag Manager -->
+</body>
+</html>
+
+@{ if (Session["added"] != null)
+    {
+        if (Convert.ToBoolean(Session["added"]) == true)
+        {
+            Session["added"] = false;
+            <script>
+                swal("په بریاليتوب سره ثبت شو", "", {
+                    icon: "success", buttons: "سمه ده"
+                });
+            </script>
+        }
+    }
+}

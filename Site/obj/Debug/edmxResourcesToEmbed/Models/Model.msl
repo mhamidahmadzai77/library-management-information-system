@@ -1,0 +1,244 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="LibraryMISModelStoreContainer" CdmEntityContainer="LibraryMISEntities">
+    <EntitySetMapping Name="Authors">
+      <EntityTypeMapping TypeName="LibraryMISModel.Author">
+        <MappingFragment StoreEntitySet="Author">
+          <ScalarProperty Name="author_id" ColumnName="author_id" />
+          <ScalarProperty Name="author_firstname" ColumnName="author_firstname" />
+          <ScalarProperty Name="author_lastname" ColumnName="author_lastname" />
+          <ScalarProperty Name="author_description" ColumnName="author_description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Books">
+      <EntityTypeMapping TypeName="LibraryMISModel.Book">
+        <MappingFragment StoreEntitySet="Book">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="s_no" ColumnName="s_no" />
+          <ScalarProperty Name="book_type" ColumnName="book_type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BookAndmagazines">
+      <EntityTypeMapping TypeName="LibraryMISModel.BookAndmagazine">
+        <MappingFragment StoreEntitySet="BookAndmagazine">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="edition_id" ColumnName="edition_id" />
+          <ScalarProperty Name="publication_no" ColumnName="publication_no" />
+          <ScalarProperty Name="publication_place" ColumnName="publication_place" />
+          <ScalarProperty Name="publisher_name" ColumnName="publisher_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BookAuthors">
+      <EntityTypeMapping TypeName="LibraryMISModel.BookAuthor">
+        <MappingFragment StoreEntitySet="BookAuthor">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="author_id" ColumnName="author_id" />
+          <ScalarProperty Name="s_no" ColumnName="s_no" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Branches">
+      <EntityTypeMapping TypeName="LibraryMISModel.Branch">
+        <MappingFragment StoreEntitySet="Branch">
+          <ScalarProperty Name="branch_id" ColumnName="branch_id" />
+          <ScalarProperty Name="branch_name" ColumnName="branch_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Dealings">
+      <EntityTypeMapping TypeName="LibraryMISModel.Dealing">
+        <MappingFragment StoreEntitySet="Dealing">
+          <ScalarProperty Name="dealing_id" ColumnName="dealing_id" />
+          <ScalarProperty Name="person_id" ColumnName="person_id" />
+          <ScalarProperty Name="edition_id" ColumnName="edition_id" />
+          <ScalarProperty Name="issue_date" ColumnName="issue_date" />
+          <ScalarProperty Name="return_date" ColumnName="return_date" />
+          <ScalarProperty Name="paid_money" ColumnName="paid_money" />
+          <ScalarProperty Name="returned" ColumnName="returned" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Editions">
+      <EntityTypeMapping TypeName="LibraryMISModel.Edition">
+        <MappingFragment StoreEntitySet="Edition">
+          <ScalarProperty Name="edition_id" ColumnName="edition_id" />
+          <ScalarProperty Name="segment_id" ColumnName="segment_id" />
+          <ScalarProperty Name="edition_no" ColumnName="edition_no" />
+          <ScalarProperty Name="publication_quantity" ColumnName="publication_quantity" />
+          <ScalarProperty Name="publication_pages" ColumnName="publication_pages" />
+          <ScalarProperty Name="cd_quantity" ColumnName="cd_quantity" />
+          <ScalarProperty Name="registration_date_type" ColumnName="registration_date_type" />
+          <ScalarProperty Name="registration_year" ColumnName="registration_year" />
+          <ScalarProperty Name="registration_month" ColumnName="registration_month" />
+          <ScalarProperty Name="registration_day" ColumnName="registration_day" />
+          <ScalarProperty Name="publication_date_type" ColumnName="publication_date_type" />
+          <ScalarProperty Name="publication_year" ColumnName="publication_year" />
+          <ScalarProperty Name="publication_month" ColumnName="publication_month" />
+          <ScalarProperty Name="publication_day" ColumnName="publication_day" />
+          <ScalarProperty Name="cupboard_no" ColumnName="cupboard_no" />
+          <ScalarProperty Name="cell_no" ColumnName="cell_no" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MonographAndThesis">
+      <EntityTypeMapping TypeName="LibraryMISModel.MonographAndThesi">
+        <MappingFragment StoreEntitySet="MonographAndThesis">
+          <ScalarProperty Name="monograph_thesis_id" ColumnName="monograph_thesis_id" />
+          <ScalarProperty Name="s_no" ColumnName="s_no" />
+          <ScalarProperty Name="supervisor_firstname" ColumnName="supervisor_firstname" />
+          <ScalarProperty Name="supervisor_lastname" ColumnName="supervisor_lastname" />
+          <ScalarProperty Name="student_registration_year" ColumnName="student_registration_year" />
+          <ScalarProperty Name="student_graduation_year" ColumnName="student_graduation_year" />
+          <ScalarProperty Name="defence_data" ColumnName="defence_data" />
+          <ScalarProperty Name="mark" ColumnName="mark" />
+          <ScalarProperty Name="graduation_period" ColumnName="graduation_period" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Newspapers">
+      <EntityTypeMapping TypeName="LibraryMISModel.Newspaper">
+        <MappingFragment StoreEntitySet="Newspaper">
+          <ScalarProperty Name="newspaper_id" ColumnName="newspaper_id" />
+          <ScalarProperty Name="newspaper_name" ColumnName="newspaper_name" />
+          <ScalarProperty Name="publisher_name" ColumnName="publisher_name" />
+          <ScalarProperty Name="quantity" ColumnName="quantity" />
+          <ScalarProperty Name="date_type" ColumnName="date_type" />
+          <ScalarProperty Name="publication_date" ColumnName="publication_date" />
+          <ScalarProperty Name="registration_date" ColumnName="registration_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="People">
+      <EntityTypeMapping TypeName="LibraryMISModel.Person">
+        <MappingFragment StoreEntitySet="Person">
+          <ScalarProperty Name="person_id" ColumnName="person_id" />
+          <ScalarProperty Name="person_idCard" ColumnName="person_idCard" />
+          <ScalarProperty Name="person_firstname" ColumnName="person_firstname" />
+          <ScalarProperty Name="person_lastname" ColumnName="person_lastname" />
+          <ScalarProperty Name="person_father_name" ColumnName="person_father_name" />
+          <ScalarProperty Name="person_state" ColumnName="person_state" />
+          <ScalarProperty Name="gender" ColumnName="gender" />
+          <ScalarProperty Name="university" ColumnName="university" />
+          <ScalarProperty Name="faculty" ColumnName="faculty" />
+          <ScalarProperty Name="department" ColumnName="department" />
+          <ScalarProperty Name="phone_number" ColumnName="phone_number" />
+          <ScalarProperty Name="email" ColumnName="email" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Publications">
+      <EntityTypeMapping TypeName="LibraryMISModel.Publication">
+        <MappingFragment StoreEntitySet="Publication">
+          <ScalarProperty Name="s_no" ColumnName="s_no" />
+          <ScalarProperty Name="ISBN" ColumnName="ISBN" />
+          <ScalarProperty Name="DDC_classificationNo" ColumnName="DDC_classificationNo" />
+          <ScalarProperty Name="LLC_classificationNo" ColumnName="LLC_classificationNo" />
+          <ScalarProperty Name="publication_type" ColumnName="publication_type" />
+          <ScalarProperty Name="publication_name" ColumnName="publication_name" />
+          <ScalarProperty Name="translator" ColumnName="translator" />
+          <ScalarProperty Name="branch_id" ColumnName="branch_id" />
+          <ScalarProperty Name="permission" ColumnName="permission" />
+          <ScalarProperty Name="publication_language" ColumnName="publication_language" />
+          <ScalarProperty Name="publication_description" ColumnName="publication_description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Segments">
+      <EntityTypeMapping TypeName="LibraryMISModel.Segment">
+        <MappingFragment StoreEntitySet="Segment">
+          <ScalarProperty Name="segment_id" ColumnName="segment_id" />
+          <ScalarProperty Name="s_no" ColumnName="s_no" />
+          <ScalarProperty Name="segment_no" ColumnName="segment_no" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Students">
+      <EntityTypeMapping TypeName="LibraryMISModel.Student">
+        <MappingFragment StoreEntitySet="Student">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="person_id" ColumnName="person_id" />
+          <ScalarProperty Name="semester" ColumnName="semester" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="LibraryMISModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Theses">
+      <EntityTypeMapping TypeName="LibraryMISModel.Thesis">
+        <MappingFragment StoreEntitySet="Thesis">
+          <ScalarProperty Name="thesis_id" ColumnName="thesis_id" />
+          <ScalarProperty Name="s_no" ColumnName="s_no" />
+          <ScalarProperty Name="internal_conflict" ColumnName="internal_conflict" />
+          <ScalarProperty Name="external_conflict" ColumnName="external_conflict" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="LibraryMISModel.User">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="image" ColumnName="image" />
+          <ScalarProperty Name="level" ColumnName="level" />
+          <ScalarProperty Name="status" ColumnName="status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Activities">
+      <EntityTypeMapping TypeName="LibraryMISModel.Activity">
+        <MappingFragment StoreEntitySet="Activity">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="activity_type" ColumnName="activity_type" />
+          <ScalarProperty Name="date_time" ColumnName="date_time" />
+          <ScalarProperty Name="person_id" ColumnName="person_id" />
+          <ScalarProperty Name="edition_id" ColumnName="edition_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NewspaperReports">
+      <EntityTypeMapping TypeName="LibraryMISModel.NewspaperReport">
+        <MappingFragment StoreEntitySet="NewspaperReport">
+          <ScalarProperty Name="newspaper_name" ColumnName="newspaper_name" />
+          <ScalarProperty Name="publisher_name" ColumnName="publisher_name" />
+          <ScalarProperty Name="quantity" ColumnName="quantity" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NotReturnedBooks">
+      <EntityTypeMapping TypeName="LibraryMISModel.NotReturnedBook">
+        <MappingFragment StoreEntitySet="NotReturnedBook">
+          <ScalarProperty Name="person_name" ColumnName="person_name" />
+          <ScalarProperty Name="university" ColumnName="university" />
+          <ScalarProperty Name="faculty" ColumnName="faculty" />
+          <ScalarProperty Name="phone_number" ColumnName="phone_number" />
+          <ScalarProperty Name="publication_name" ColumnName="publication_name" />
+          <ScalarProperty Name="issue_date" ColumnName="issue_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TotalPublications">
+      <EntityTypeMapping TypeName="LibraryMISModel.TotalPublication">
+        <MappingFragment StoreEntitySet="TotalPublication">
+          <ScalarProperty Name="publication_name" ColumnName="publication_name" />
+          <ScalarProperty Name="publicationType" ColumnName="publicationType" />
+          <ScalarProperty Name="publication_quantity" ColumnName="publication_quantity" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

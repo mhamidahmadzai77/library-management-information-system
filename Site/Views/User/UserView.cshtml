@@ -1,0 +1,143 @@
+﻿@model IEnumerable<Site.Models.User>
+
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>دننګرهار پوهنتون دحقوقو او سیاسي علومو پوهنځي د کتابونو لست</title>
+    <link href="~/assets/sweetalert.css" rel="stylesheet" />
+</head>
+<body>
+
+
+    <div class="row">
+        <div class="col-md-12">
+            <!-- BEGIN EXAMPLE TABLE PORTLET-->
+            <div class="portlet box green">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="icon-settings"></i> د سېسټم د کارونکو معلوماتي لست
+                    </div>
+                    <div class="tools"> </div>
+                </div>
+                <div class="portlet-body">
+                    <table class="table table-striped table-bordered table-hover" id="sample_2">
+                        <thead>
+                            <tr>
+                                <th> شماره</th>
+                                <th> نوم </th>
+                                <th> ایمیل ادرس </th>
+                                <th> د صلاحیت سطحه </th>
+                                <th> فعال/غیرفعال </th>
+                                <th> عمل </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{
+                                int number = 1;
+
+                                foreach (var col in Model)
+                                {
+                                    <tr id="@col.user_id">
+                                        @*BEGIN COL 1*@
+                                        <td> @number </td>
+                                        @*END COL 1*@
+
+                                        @*BEGIN COL 2*@
+                                        <td> @col.username </td>
+                                        @*END COL 2*@
+
+                                        @*BEGIN COL 3*@
+                                        <td> @col.email </td>
+                                        @*END COL 3*@
+
+                                        @*BEGIN COL 4*@
+                                        @{
+                                            if (col.level == "admin")
+                                            {
+                                                <td> اډمین </td>
+
+                                            }
+                                            else if (col.level == "director")
+                                            {
+                                                <td> مدیر </td>
+                                            }
+                                            else
+                                            {
+                                                <td> </td>
+
+                                            }
+                                        }
+                                        @*END COL 4*@
+
+                                        @*BEGIN COL 5*@
+                                        @{
+                                            if (col.status == "active")
+                                            {
+                                                <td> فعال </td>
+                                            }
+                                            else if (col.status == "inactive")
+                                            {
+                                                <td> غیر فعال</td>
+                                            }
+                                            else
+                                            {
+                                                <td></td>
+                                            }
+
+                                        }
+                                        @*END COL 5*@
+
+                                        @*BEGIN COL 6*@
+                                        <td>
+                                            <a href="/User/EditUser/@col.user_id" class="btn green mt-ladda-btn ladda-button btn-outline" data-style="slide-down" data-spinner-color="#333">
+                                                <span class="ladda-label">
+                                                    <i class="fa fa-edit"></i> تغیرات
+                                                </span>
+                                                <span class="ladda-spinner"></span>
+                                            </a>
+                                            <button type="button" onclick="DeleteConfirmation(@col.user_id)" class="btn red mt-ladda-btn ladda-button btn-outline" data-style="slide-down" data-spinner-color="#800">
+                                                <span class="ladda-label">
+                                                    <i class="fa fa-trash-o"></i> لرې کول
+                                                </span>
+                                                <span class="ladda-spinner"></span>
+                                            </button>
+
+                                        </td>
+                                        @*END COL 6*@
+
+                                    </tr>
+                                    number++;
+                                }
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- END EXAMPLE TABLE PORTLET-->
+        </div>
+    </div>
+    <script src="~/assets/alert.js"></script>
+    <script src="~/assets/userview-delete-stript.js"></script>
+</body>
+</html>
+@{
+
+    if(Session["changed"] != null)
+    {
+
+
+        if (Session["changed"].ToString() == "true")
+        {
+            // If any record was updated than set the session to false and show an alert
+            Session["changed"] = "false";
+            <script type="text/javascript">
+                    swal("تغیرات", "په بریالیتوب سره مو حساب تغیر کړ", {
+                        icon: "success", buttons: "سمه ده"
+                    });
+            </script>
+        }
+    }
+}

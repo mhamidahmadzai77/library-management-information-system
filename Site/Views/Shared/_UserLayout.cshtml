@@ -1,0 +1,796 @@
+﻿
+<!DOCTYPE html>
+<!--
+<!--[if !IE]><!-->
+<html lang="en" dir="rtl">
+<!--<![endif]-->
+<!-- BEGIN HEAD -->
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <title></title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <meta content="" name="description" />
+    <meta content="" name="author" />
+    <!-- BEGIN GLOBAL MANDATORY STYLES -->
+    <link href="~/assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/global/plugins/bootstrap/css/bootstrap-rtl.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/global/plugins/bootstrap-switch/css/bootstrap-switch-rtl.min.css" rel="stylesheet" type="text/css" />
+    <!-- END GLOBAL MANDATORY STYLES -->
+    <!-- BEGIN PAGE LEVEL PLUGINS -->
+    <link href="~/assets/global/plugins/datatables/datatables.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap-rtl.css" rel="stylesheet" type="text/css" />
+    <!-- END PAGE LEVEL PLUGINS -->
+    <!-- BEGIN PAGE LEVEL PLUGINS -->
+    <link href="~/assets/global/plugins/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/global/plugins/select2/css/select2-bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <!-- END PAGE LEVEL PLUGINS -->
+    <!-- BEGIN THEME GLOBAL STYLES -->
+    <link href="~/assets/global/css/components-rounded-rtl.min.css" rel="stylesheet" id="style_components" type="text/css" />
+    <link href="~/assets/global/css/plugins-rtl.min.css" rel="stylesheet" type="text/css" />
+    <!-- END THEME GLOBAL STYLES -->
+    <!-- BEGIN THEME LAYOUT STYLES -->
+    <link href="~/assets/layouts/layout/css/layout-rtl.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/layouts/layout/css/themes/darkblue-rtl.min.css" rel="stylesheet" type="text/css" id="style_color" />
+    <link href="~/assets/layouts/layout/css/custom-rtl.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/my files/mystyle.css" rel="stylesheet" />
+    <!-- END THEME LAYOUT STYLES -->
+    <link rel="shortcut icon" href="favicon.ico" />
+</head>
+
+<!-- END HEAD -->
+
+<body class="page-header-fixed page-sidebar-closed-hide-logo page-content-white page-full-width">
+    <div class="page-wrapper">
+        <!-- BEGIN HEADER -->
+        <div class="page-header navbar navbar-fixed-top">
+            <!-- BEGIN HEADER INNER -->
+            <div class="page-header-inner ">
+                <!-- BEGIN LOGO -->
+                <div class="page-logo">
+                    <a href="/Publication/Index">
+                        <img src="~/assets/layouts/layout/img/logo.png" alt="logo" width="90" class="logo-default" />
+                    </a>
+                </div>
+                <!-- END LOGO -->
+                <!-- BEGIN MEGA MENU -->
+                <!-- DOC: Remove "hor-menu-light" class to have a horizontal menu with theme background instead of white background -->
+                <!-- DOC: This is desktop version of the horizontal menu. The mobile version is defined(duplicated) in the responsive menu below along with sidebar menu. So the horizontal menu has 2 seperate versions -->
+                <div class="hor-menu   hidden-sm hidden-xs" style="margin-right:-120px;">
+                    <ul class="nav navbar-nav">
+                        <!-- DOC: Remove data-hover="megamenu-dropdown" and data-close-others="true" attributes below to disable the horizontal opening on mouse hover -->
+                        <li class="classic-menu-dropdown active">
+                            <a href="~/Publication/Index">
+                                کــور
+                                <span class="selected"> </span>
+                            </a>
+                        </li>
+                        <li class="mega-menu-dropdown">
+                            <a href="javascript:;" class="dropdown-toggle" data-hover="megamenu-dropdown" data-close-others="true">
+                                کتابتون
+                                <i class="fa fa-angle-down" style="color:aqua;"></i>
+                            </a>
+                            <ul class="dropdown-menu" style="min-width: 700px;">
+                                <li>
+                                    <!-- Content container to add padding -->
+                                    <div class="mega-menu-content">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <ul class="mega-menu-submenu">
+                                                    <li>
+                                                        <h3 style="font-size:20px;">ثبتول</h3>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/Book/BookRegistrationView"><i class="fa fa-chevron-left" style="color:aqua;font-size:9px;"></i>  د کتاب ثبتول </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/Magazine/MagazineRegistrationView"><i class="fa fa-chevron-left" style="color:aqua;font-size:9px;"></i>  د مجلې ثبتول</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/Thesis/ThesisRegistrationView"><i class="fa fa-chevron-left" style="color:aqua;font-size:9px;"></i>  د مونوګراف ثبتول</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/Monograph/MonographRegistrationView"><i class="fa fa-chevron-left" style="color:aqua;font-size:9px;"></i>  د تېزس ثبتول</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#"><i class="fa fa-chevron-left" style="color:aqua;font-size:9px;"></i>  د اخبار ثبتول</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <ul class="mega-menu-submenu">
+                                                    <li>
+                                                        <h3 style="font-size:20px;">لستونه</h3>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/Publication/Index"><i class="fa fa-chevron-left" style="color:aqua;font-size:9px;"></i>  عمــــومي لست</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/Book/Index"><i class="fa fa-chevron-left" style="color:aqua;font-size:9px;"></i>  د کــتابونو لست</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/Magazine/Index"><i class="fa fa-chevron-left" style="color:aqua;font-size:9px;"></i>  د مجلو لست</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/Monograph/Index"><i class="fa fa-chevron-left" style="color:aqua;font-size:9px;"></i>  د مونوګرافونو لست</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/Thesis/Index"><i class="fa fa-chevron-left" style="color:aqua;font-size:9px;"></i>  دتېزسونو لست</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/Newspaper/NewspaperView"><i class="fa fa-chevron-left" style="color:aqua;font-size:9px;"></i>  د اخبار لست</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="mega-menu-dropdown">
+                            <a href="javascript:;" class="dropdown-toggle" data-hover="megamenu-dropdown" data-close-others="true">
+                                مراجعین
+                                <i class="fa fa-angle-down" style="color:aqua;"></i>
+                            </a>
+                            <ul class="dropdown-menu" style="min-width: 700px;">
+                                <li>
+                                    <!-- Content container to add padding -->
+                                    <div class="mega-menu-content">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <ul class="mega-menu-submenu">
+                                                    <li>
+                                                        <h3 style="font-size:20px;">د مراجعینو ثبتول</h3>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/Person/StudentRegistrationView"><i class="fa fa-chevron-left" style="color:aqua;font-size:9px;"></i>  د محصل ثبتول</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/Person/TeacherRegistrationView"><i class="fa fa-chevron-left" style="color:aqua;font-size:9px;"></i>  د استاد ثبتول</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/Person/EmployeeRegistrationView"><i class="fa fa-chevron-left" style="color:aqua;font-size:9px;"></i>  د کارمند ثبتول</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <ul class="mega-menu-submenu">
+                                                    <li>
+                                                        <h3 style="font-size:20px;">د مراجعینو لستونه</h3>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/Person/Index"><i class="fa fa-chevron-left" style="color:aqua;font-size:9px;"></i>  عمــــومي لست</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/Person/StudentView"><i class="fa fa-chevron-left" style="color:aqua;font-size:9px;"></i>  د محصلینو لست</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/Person/TeacherView"><i class="fa fa-chevron-left" style="color:aqua;font-size:9px;"></i>  د استادانو لست</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/Person/EmployeeView"><i class="fa fa-chevron-left" style="color:aqua;font-size:9px;"></i>  د کارمندانو لست</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="classic-menu-dropdown">
+                            <a href="javascript:;" data-hover="megamenu-dropdown" data-close-others="true">
+                                د کتاب ورکول او بېرته اخیستل
+                                <i class="fa fa-angle-down" style="color:aqua;"></i>
+                            </a>
+                            <ul class="dropdown-menu pull-left" style="width:300px;">
+                                <li>
+                                    <a href="/Dealing/dealingRegistrationView">
+                                        <i class="fa fa-ticket" style="color:aqua;"></i> د کتاب ورکول
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/Dealing/Index">
+                                        <i class="fa fa-bolt" style="color:coral;"></i> د کتاب بېرته اخیستل
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="classic-menu-dropdown">
+                            <a href="javascript:;" data-hover="megamenu-dropdown" data-close-others="true">
+                                کارونکی
+                                <i class="fa fa-angle-down" style="color:aqua;"></i>
+                            </a>
+                            <ul class="dropdown-menu pull-left">
+                                <li>
+                                    <a href="/User/MyProfile">
+                                        <i class="fa fa-user" style="color:aqua;"></i> خپل حساب
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/User/LoginView">
+                                        <i class="fa fa-user-plus" style="color:aqua;"></i> بل حساب ته ننوتل
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="User/LockScreen">
+                                        <i class="fa fa-lock" style="color:chocolate;"></i> قفل
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/User/Signup">
+                                        <i class="icon-logout" style="color:aqua;"></i> حساب بندول
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <!-- END MEGA MENU -->
+                <!-- BEGIN HEADER SEARCH BOX -->
+                <!-- DOC: Apply "search-form-expanded" right after the "search-form" class to have half expanded search box -->
+                <form class="search-form">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search..." name="query">
+                        <span class="input-group-btn">
+                            <a href="javascript:;" class="btn submit">
+                                <i class="icon-magnifier" style="color:aqua;"></i>
+                            </a>
+                        </span>
+                    </div>
+                </form>
+                <!-- END HEADER SEARCH BOX -->
+                <!-- BEGIN RESPONSIVE MENU TOGGLER -->
+                <a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span></span>
+                </a>
+                <!-- END RESPONSIVE MENU TOGGLER -->
+                <!-- BEGIN TOP NAVIGATION MENU -->
+                <div class="top-menu">
+                    <ul class="nav navbar-nav pull-right">
+                        <!-- BEGIN NOTIFICATION DROPDOWN -->
+                        <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
+
+
+                        <li class="dropdown dropdown-extended dropdown-dark dropdown-notification" id="header_notification_bar">
+                            <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                                <i class="icon-bell" style="color:aqua;"></i>
+                                <span class="badge badge-danger"> 7 </span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="external">
+                                    <h3>
+                                        <span class="bold">12 pending</span> notifications
+                                    </h3>
+                                    <a href="page_user_profile_1.html">view all</a>
+                                </li>
+                                <li>
+                                    <ul class="dropdown-menu-list scroller" style="height: 250px;" data-handle-color="#637283">
+                                        <li>
+                                            <a href="javascript:;">
+                                                <span class="time">just now</span>
+                                                <span class="details">
+                                                    <span class="label label-sm label-icon label-success">
+                                                        <i class="fa fa-plus"></i>
+                                                    </span> New user registered.
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:;">
+                                                <span class="time">3 mins</span>
+                                                <span class="details">
+                                                    <span class="label label-sm label-icon label-danger">
+                                                        <i class="fa fa-bolt"></i>
+                                                    </span> Server #12 overloaded.
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:;">
+                                                <span class="time">10 mins</span>
+                                                <span class="details">
+                                                    <span class="label label-sm label-icon label-warning">
+                                                        <i class="fa fa-bell-o"></i>
+                                                    </span> Server #2 not responding.
+                                                </span>
+                                            </a>
+                                        </li>
+
+                                        <li>
+                                            <a href="javascript:;">
+                                                <span class="time">14 hrs</span>
+                                                <span class="details">
+                                                    <span class="label label-sm label-icon label-info">
+                                                        <i class="fa fa-bullhorn"></i>
+                                                    </span> Application error.
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:;">
+                                                <span class="time">2 days</span>
+                                                <span class="details">
+                                                    <span class="label label-sm label-icon label-danger">
+                                                        <i class="fa fa-bolt"></i>
+                                                    </span> Database overloaded 68%.
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:;">
+                                                <span class="time">3 days</span>
+                                                <span class="details">
+                                                    <span class="label label-sm label-icon label-danger">
+                                                        <i class="fa fa-bolt"></i>
+                                                    </span> A user IP blocked.
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:;">
+                                                <span class="time">4 days</span>
+                                                <span class="details">
+                                                    <span class="label label-sm label-icon label-warning">
+                                                        <i class="fa fa-bell-o"></i>
+                                                    </span> Storage Server #4 not responding dfdfdfd.
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:;">
+                                                <span class="time">5 days</span>
+                                                <span class="details">
+                                                    <span class="label label-sm label-icon label-info">
+                                                        <i class="fa fa-bullhorn"></i>
+                                                    </span> System Error.
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:;">
+                                                <span class="time">9 days</span>
+                                                <span class="details">
+                                                    <span class="label label-sm label-icon label-danger">
+                                                        <i class="fa fa-bolt"></i>
+                                                    </span> Storage server failed.
+                                                </span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <!-- END NOTIFICATION DROPDOWN -->
+                        <!-- BEGIN USER LOGIN DROPDOWN -->
+                        <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
+                        <li class="dropdown dropdown-user dropdown-dark">
+                            <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                                @if (Session["image"] != null)
+                                {
+                                    <img alt="" class="img-circle" width="30" src='@Url.Action("DisplayImage", "User")' />
+                                }
+                                @if (Session["image"] == null)
+                                {
+                                    <img src="~/assets/pic/user-default-image-without-bg.png" class="img-circle" id="displayImageTag" class="img-responsive" />
+
+                                }
+                                <span class="username username-hide-on-mobile"> @Session["username"]</span>
+                                <i class="fa fa-angle-down" style="color:aqua"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-default">
+                                <li>
+                                    <a href="/User/MyProfile">
+                                        <i class="icon-user" style="color:darkcyan"></i>  خپل حساب
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/User/LoginView">
+                                        <i class="icon-user-follow" style="color:darkcyan"></i>  بل حساب ته ننوتل
+                                    </a>
+                                </li>
+                                <li class="divider"> </li>
+                                <li>
+                                    <a href="~/User/Lockscreen">
+                                        <i class="icon-lock" style="color:darkcyan"></i> قفل
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/User/Signup">
+                                        <i class="icon-key" style="color:darkcyan"></i> حساب بندول
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <!-- END USER LOGIN DROPDOWN -->
+
+                    </ul>
+                </div>
+                <!-- END TOP NAVIGATION MENU -->
+            </div>
+            <!-- END HEADER INNER -->
+        </div>
+        <!-- END HEADER -->
+        <!-- BEGIN HEADER & CONTENT DIVIDER -->
+        <div class="clearfix"> </div>
+        <!-- END HEADER & CONTENT DIVIDER -->
+        <!-- BEGIN CONTAINER -->
+        <div class="page-container">
+            <!-- BEGIN SIDEBAR -->
+            <div class="page-sidebar-wrapper">
+                <!-- BEGIN SIDEBAR -->
+                <!-- DOC: Set data-auto-scroll="false" to disable the sidebar from auto scrolling/focusing -->
+                <!-- DOC: Change data-auto-speed="200" to adjust the sub menu slide up/down speed -->
+                <div class="page-sidebar navbar-collapse collapse">
+                    <!-- END SIDEBAR MENU -->
+                    <div class="page-sidebar-wrapper">
+                        <!-- BEGIN RESPONSIVE MENU FOR HORIZONTAL & SIDEBAR MENU -->
+                        <ul class="page-sidebar-menu visible-sm visible-xs  page-header-fixed" data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
+                            <li class="nav-item start active open">
+                                <a href="/Publication/Index" class="nav-link nav-toggle">
+                                    کــور
+                                    <span class="selected"> </span>
+                                </a>
+                            </li>
+                            <li class="nav-item ">
+                                <a href="/Publication/Index" class="nav-link nav-toggle">
+                                    <i class="icon-home" style="color:aqua;"></i>
+                                    <span class="title">کـــور</span>
+                                </a>
+                            </li>
+                            <li class="nav-item ">
+                                <a href="javascript:;" class="nav-link nav-toggle">
+                                    <i class="fa fa-book" style="color:aqua;"></i>
+                                    <span class="title">کتابتون</span>
+                                    <span class="arrow"></span>
+                                </a>
+                                <ul class="sub-menu">
+                                    <li class="nav-item  ">
+                                        <a href="javascript:;" class="nav-link nav-toggle">
+                                            <i class="fa fa-save" style="color:aqua;"></i>
+
+                                            <span class="title">ثبتول</span>
+                                            <span class="arrow"></span>
+                                        </a>
+                                        <ul class="sub-menu">
+                                            <li class="nav-item  ">
+                                                <a href="/Book/BookRegistrationView" id="item" class="nav-link item">
+                                                    <i class="fa fa-caret-left" style="color:aqua;"></i>
+                                                    <span class="title">د کتاب ثبتول</span>
+
+                                                </a>
+                                            </li>
+                                            <li class="nav-item  ">
+                                                <a href="/Magazine/MagazineRegistrationView" class="nav-link ">
+                                                    <i class="fa fa-caret-left" style="color:aqua;"></i>
+                                                    <span class="title">د مجلې ثبتول</span>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item  ">
+                                                <a href="/Monograph/MonographRegistrationView" class="nav-link ">
+                                                    <i class="fa fa-caret-left" style="color:aqua;"></i>
+                                                    <span class="title">د مونوګراف ثبتول</span>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item  ">
+                                                <a href="/Thesis/ThesisRegistrationView" class="nav-link ">
+                                                    <i class="fa fa-caret-left" style="color:aqua;"></i>
+                                                    <span class="title">د تېزس ثبتول</span>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item  ">
+                                                <a href="/Newspaper/NewspaperRegistrationView" class="nav-link ">
+                                                    <i class="fa fa-caret-left" style="color:aqua;"></i>
+                                                    <span class="title">د اخبار ثبتول</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item  ">
+                                        <a href="javascript:;" class="nav-link nav-toggle">
+                                            <i class="fa fa-th-list" style="color:aqua;"></i>
+                                            <span class="title">لستونه</span>
+                                            <span class="arrow"></span>
+                                        </a>
+                                        <ul class="sub-menu">
+                                            <li class="nav-item  ">
+                                                <a href="/Publication/Index" class="nav-link ">
+                                                    <i class="fa fa-caret-left" style="color:aqua;"></i>
+                                                    <span class="title">عمومي لست</span>
+                                                </a>
+
+                                            </li>
+                                            <li class="nav-item  ">
+                                                <a href="/Book/Index" class="nav-link ">
+                                                    <i class="fa fa-caret-left" style="color:aqua;"></i>
+                                                    <span class="title">د کتابونو لست</span>
+                                                </a>
+
+                                            </li>
+                                            <li class="nav-item  ">
+                                                <a href="/Magazine/Index" class="nav-link ">
+                                                    <i class="fa fa-caret-left" style="color:aqua;"></i>
+                                                    <span class="title">د مجلو لست</span>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item  ">
+                                                <a href="/Monograph/Index" class="nav-link ">
+                                                    <i class="fa fa-caret-left" style="color:aqua;"></i>
+                                                    <span class="title">د مونوګرافونو لست</span>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item  ">
+                                                <a href="/Thesis/Index" class="nav-link ">
+                                                    <i class="fa fa-caret-left" style="color:aqua;"></i>
+                                                    <span class="title">د تېزسونو لست</span>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item  ">
+                                                <a href="/Newspaper/NewspaperView" class="nav-link ">
+                                                    <i class="fa fa-caret-left" style="color:aqua;"></i>
+                                                    <span class="title">د اخبار لست</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item  ">
+                                <a href="javascript:;" class="nav-link nav-toggle">
+                                    <i class="fa fa-users" style="color:aqua;"></i>
+                                    <span class="title">مراجعین</span>
+                                    <span class="arrow"></span>
+                                </a>
+                                <ul class="sub-menu">
+                                    <li class="nav-item  ">
+                                        <a href="javascript:;" class="nav-link nav-toggle">
+                                            <i class="fa fa-user-plus" style="color:aqua;"></i>
+                                            <span class="title">د مراجعینو ثبتول</span>
+                                            <span class="arrow"></span>
+                                        </a>
+                                        <ul class="sub-menu">
+                                            <li class="nav-item  ">
+                                                <a href="~/Person/StudentRegistrationView" class="nav-link ">
+                                                    <i class="fa fa-caret-left" style="color:aqua;"></i>
+                                                    <span class="title">د محصل ثبتول</span>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item  ">
+                                                <a href="/Person/TeacherRegistrationView" class="nav-link ">
+                                                    <i class="fa fa-caret-left" style="color:aqua;"></i>
+                                                    <span class="title">د استاد ثبتول</span>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item  ">
+                                                <a href="/Person/EmployeeRegistrationView" class="nav-link ">
+                                                    <i class="fa fa-caret-left" style="color:aqua;"></i>
+                                                    <span class="title">د کارمند ثبتول</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item  ">
+                                        <a href="javascript:;" class="nav-link nav-toggle">
+                                            <i class="fa fa-list" style="color:aqua;"></i>
+                                            <span class="title">د مرجعینو لستونه</span>
+                                            <span class="arrow"></span>
+                                        </a>
+                                        <ul class="sub-menu">
+                                            <li class="nav-item  ">
+                                                <a href="/Person/Index" class="nav-link ">
+                                                    <i class="fa fa-caret-left" style="color:aqua;"></i>
+                                                    <span class="title">عمومي لست</span>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item  ">
+                                                <a href="/Person/StudentView" class="nav-link ">
+                                                    <i class="fa fa-caret-left" style="color:aqua;"></i>
+                                                    <span class="title">د محصلینو لست</span>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item  ">
+                                                <a href="/Person/TeacherView" class="nav-link ">
+                                                    <i class="fa fa-caret-left" style="color:aqua;"></i>
+                                                    <span class="title">د استادانو لست</span>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item  ">
+                                                <a href="/Person/EmployeeView" class="nav-link ">
+                                                    <i class="fa fa-caret-left" style="color:aqua;"></i>
+                                                    <span class="title">د کارمندانو لست</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item  ">
+                                <a href="javascript:;" class="nav-link nav-toggle">
+                                    <i class="icon-diamond" style="color:aqua;"></i>
+                                    <span class="title">د کتاب ورکول او بېرته اخیستل</span>
+                                    <span class="arrow"></span>
+                                </a>
+                                <ul class="sub-menu">
+                                    <li class="nav-item  ">
+                                        <a href="/Dealing/dealingRegistrationView" class="nav-link nav-toggle">
+                                            <i class="fa fa-ticket " style="color:aqua;"></i>
+                                            <span class="title">کتاب ورکول</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item  ">
+                                        <a href="/Dealing/Index" class="nav-link nav-toggle">
+                                            <i class="fa fa-get-pocket" style="color:aqua;"></i>
+                                            <span class="title">د کتاب بېرته اخیستل</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item  ">
+                                <a href="javascript:;" class="nav-link nav-toggle">
+                                    <i class="icon-user" style="color:aqua;"></i>
+                                    <span class="title">کارونکی</span>
+                                    <span class="arrow "></span>
+                                </a>
+                                <ul class="sub-menu">
+
+                                    <li class="nav-item">
+                                        <a href="/User/LoginView" class="nav-link nav-toggle">
+                                            <i class="icon-login" style="color:aqua;"></i>
+                                            <span class="title">بل حساب ته ننوتل</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item  ">
+                                        <a href="/User/LockScreen" class="nav-link " target="_blank">
+                                            <i class="icon-lock" style="color:aqua;"></i>
+                                            <span class="title">قفل</span>
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </li>
+                        </ul>
+                        <!-- END RESPONSIVE MENU FOR HORIZONTAL & SIDEBAR MENU -->
+                    </div>
+                </div>
+                <!-- END SIDEBAR -->
+            </div>
+            <!-- END SIDEBAR -->
+            <!-- BEGIN CONTENT -->
+            <div class="page-content-wrapper">
+                <!-- BEGIN CONTENT BODY -->
+                <div class="page-content">
+                    @RenderBody()
+                </div>
+                <!-- END CONTENT BODY -->
+            </div>
+            <!-- END CONTENT -->
+        </div>
+        <!-- END CONTAINER -->
+        <!-- BEGIN FOOTER -->
+
+        <footer id="footer" style="margin-bottom:50px;">
+            <div class="footer-top">
+                <div class="container">
+                    <div class="row" style="text-align:center;">
+                        <div class="col-lg-1"></div>
+                        <div class="col-lg-4 col-md-6 footer-links">
+                            <h4>کتابتون</h4>
+                            <ul>
+                                <li><a href="/Publication/Index">کــــور</a></li>
+                                <li><a href="/Book/Index">کتابونه</a></li>
+                                <li><a href="/Magazine/Index">مجلې</a></li>
+                                <li><a href="/Monograph/Index">مونوګراف</a></li>
+                                <li><a href="/Thesis/Index">تېرېس</a></li>
+                                <li><a href="/Person/Index">پېرېدونکي</a></li>
+
+                            </ul>
+                        </div>
+
+                        <div class="col-lg-3 col-md-6 footer-links" style="margin-bottom:70px;">
+                            <h4>کارونکي</h4>
+                            <ul>
+                                <li><a href="/User/LoginView">بل حساب ته ننوتل</a></li>
+                                <li><a href="/User/LockScreen">قفل</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-4 col-md-6" style="padding-top:-10px;">
+                            <div class="footer-info">
+                                <h4>د حقوقو او سیاسي علومو پوهنځي کتابتون</h4>
+                                <p>
+                                    ننګرهار - جلال اباد<br>
+                                    ډرونټه ـ ننګرهار پوهنتون<br><br>
+                                    <strong>موبایل شماره:</strong> 773030001 <span>93+</span><br>
+                                    <strong>ایمیل ادرس    :</strong> nanlaw@gmail.com<br>
+                                </p>
+                                <div class="social-links mt-3 ">
+                                    <div class="portlet ">
+                                        <div class="portlet-body util-btn-margin-bottom-5" style="margin-right:16%;">
+                                            <a href="javascript:;" data-original-title="facebook" class="social-icon facebook"> </a>
+                                            <a href="javascript:;" data-original-title="linkedin" class="social-icon linkedin"> </a>
+                                            <a href="javascript:;" data-original-title="skype" class="social-icon skype"> </a>
+                                            <a href="javascript:;" data-original-title="twitter" class="social-icon twitter"> </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="scroll-to-top" style="display: block;">
+                <i class="icon-arrow-up " style="color: aqua;"></i>
+            </div>
+
+            <div class="container">
+                <div class="copyright " dir="ltr" style="margin-bottom:30px;">
+                    Copyright © <strong><span>NULPFL</span></strong>. All Rights Reserved
+                </div>
+            </div>
+        </footer>
+        <!-- END FOOTER -->
+    </div>
+
+    <!--[if lt IE 9]>
+    <script src="~/assets/global/plugins/respond.min.js"></script>
+    <script src="~/assets/global/plugins/excanvas.min.js"></script>
+    <![endif]-->
+    <!-- BEGIN CORE PLUGINS -->
+    <script src="~/assets/global/plugins/jquery.min.js" type="text/javascript"></script>
+    <script src="~/assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="~/assets/global/plugins/js.cookie.min.js" type="text/javascript"></script>
+    <script src="~/assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+    <script src="~/assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
+    <script src="~/assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
+    <!-- END CORE PLUGINS -->
+    <!-- BEGIN PAGE LEVEL PLUGINS -->
+    <script src="~/assets/global/scripts/datatable.js" type="text/javascript"></script>
+    <script src="~/assets/global/plugins/datatables/datatables.min.js" type="text/javascript"></script>
+    <script src="~/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js" type="text/javascript"></script>
+    <!-- END PAGE LEVEL PLUGINS -->
+    <!-- BEGIN PAGE LEVEL PLUGINS -->
+    <script src="~/assets/global/plugins/select2/js/select2.full.min.js" type="text/javascript"></script>
+    <script src="~/assets/global/plugins/jquery-validation/js/jquery.validate.min.js" type="text/javascript"></script>
+    <script src="~/assets/global/plugins/jquery-validation/js/additional-methods.min.js" type="text/javascript"></script>
+    <script src="~/assets/global/plugins/bootstrap-wizard/jquery.bootstrap.wizard.min.js" type="text/javascript"></script>
+    <!-- END PAGE LEVEL PLUGINS -->
+    <!-- BEGIN THEME GLOBAL SCRIPTS -->
+    <script src="~/assets/global/scripts/app.min.js" type="text/javascript"></script>
+    <!-- END THEME GLOBAL SCRIPTS -->
+    <!-- BEGIN PAGE LEVEL SCRIPTS -->
+    <script src="~/assets/pages/scripts/components-select2.min.js" type="text/javascript"></script>
+    <!-- END PAGE LEVEL SCRIPTS -->
+    <script src="~/assets/pages/scripts/lock.min.js" type="text/javascript"></script>
+    <!-- BEGIN PAGE LEVEL SCRIPTS -->
+    <script src="~/assets/pages/scripts/table-datatables-rowreorder.min.js" type="text/javascript"></script>
+    <!-- END PAGE LEVEL SCRIPTS -->
+    <!-- BEGIN THEME LAYOUT SCRIPTS -->
+    <script src="~/assets/layouts/layout/scripts/layout.min.js" type="text/javascript"></script>
+    <script src="~/assets/layouts/layout/scripts/demo.min.js" type="text/javascript"></script>
+    <script src="~/assets/layouts/global/scripts/quick-sidebar.min.js" type="text/javascript"></script>
+    <!-- END THEME LAYOUT SCRIPTS -->
+    <script src="~/assets/my script/script.js" type="text/javascript"></script>
+
+
+    <!-- END THEME LAYOUT SCRIPTS -->
+    <!-- Google Tag Manager -->
+    <noscript>
+        <iframe src="http://www.googletagmanager.com/ns.html?id=GTM-NGFVTN"
+                height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <script>
+        (function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    '../../../../../www.googletagmanager.com/gtm5445.html?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-NGFVTN');</script>
+    <!-- End Google Tag Manager -->
+</body>
+</html>
+
+
+

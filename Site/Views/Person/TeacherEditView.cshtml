@@ -1,0 +1,390 @@
+﻿@model Site.Models.Person
+
+<html>
+<head>
+
+</head>
+<body>
+
+    <div>
+        <form>
+            <div class="row">
+                <div class="note note-success">
+
+                    <h3 style="color: gray; font-weight:bold; text-align: center;"> د استاد د تغیرولو فورم</h3>
+
+                </div>
+                <input type="hidden" id="teacher_id" value="@Model.person_id" />
+                <div class="col-md-1"></div>
+                <div class="form-group col-md-11">
+                    <div class="col-md-2 ">
+
+                        <label style="font-size:20px">تذکري نمبر</label>
+
+                    </div>
+
+                    <div class=" col-md-6">
+                        <input type="text" class="form-control col-md-6" name="teacher_idcardnumber" id="teacher_idcardnumber" style="border-radius:6px;" placeholder="تذکري نمبر" value="@Model.person_idCard" />
+                        <br />
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-1"></div>
+                <div class="form-group col-md-11">
+                    <div class="col-md-2 ">
+
+                        <label style="font-size:20px">نوم</label>
+
+                    </div>
+
+                    <div class=" col-md-6">
+                        <input type="text" class="form-control col-md-6" name="teacher_name" id="teacher_name" style="border-radius:6px;" placeholder="نوم" value="@Model.person_firstname" />
+                        <br />
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-1"></div>
+                <div class="form-group col-md-11">
+                    <div class="col-md-2 ">
+
+                        <label style="font-size:20px">تخلص</label>
+
+                    </div>
+
+                    <div class=" col-md-6">
+                        <input type="text" class="form-control col-md-6" name="teacher_lastname" id="teacher_lastname" style="border-radius:6px;" placeholder="تخلص" value="@Model.person_lastname" />
+                        <br />
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-1"></div>
+                <div class="form-group col-md-11">
+                    <div class="col-md-2 ">
+
+                        <label style="font-size:20px">پلار نوم</label>
+
+                    </div>
+
+                    <div class=" col-md-6">
+                        <input type="text" class="form-control col-md-6" name="teacher_fathername" id="teacher_fathername" style="border-radius:6px;" placeholder="پلار نوم" value="@Model.person_father_name" />
+                        <br />
+
+                    </div>
+
+                </div>
+
+               
+
+                <div class="col-md-1"></div>
+                <div class="form-group col-md-11">
+                    <div class="col-md-2 ">
+
+                        <label style="font-size:20px">جنس</label>
+
+                    </div>
+
+                    <div class=" col-md-6">
+                        <select class="form-control" style="padding:5px; border-radius:6px;" id="teacher_gender">
+                            @{
+                                if (Model.gender == "نارینه")
+                                {
+                                    <option style="font-size:24px;" value="نارینه" selected>نارینه </option>
+                                }
+                                else
+                                {
+                                    <option style="font-size:24px;" value="نارینه">نارینه </option>
+                                }
+                                if (Model.gender == "ښځینه")
+                                {
+                                    <option style="font-size:24px;" value="ښځینه" selected>ښځینه </option>
+                                }
+                                else
+                                {
+                                    <option style="font-size:24px;" value="ښځینه" >ښځینه </option>
+                                }
+                            }
+
+
+
+                        </select>
+                        <br />
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-1"></div>
+                <div class="form-group col-md-11">
+                    <div class="col-md-2 ">
+
+                        <label style="font-size:20px">پوهنتون</label>
+
+                    </div>
+
+                    <div class=" col-md-6">
+                        <input type="text" class="form-control col-md-6" name="teacher_university" id="teacher_university" style="border-radius:6px;" placeholder="پوهنتون" value="@Model.university" />
+                        <br />
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-1"></div>
+                <div class="form-group col-md-11">
+                    <div class="col-md-2 ">
+
+                        <label style="font-size:20px">پوهنځی</label>
+
+                    </div>
+
+                    <div class=" col-md-6">
+                        <input type="text" class="form-control col-md-6" name="teacher_faculty" id="teacher_faculty" style="border-radius:6px;" placeholder="پوهنځی" value="@Model.faculty" />
+                        <br />
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-1"></div>
+                <div class="form-group col-md-11">
+                    <div class="col-md-2 ">
+
+                        <label style="font-size:20px">څانګه</label>
+
+                    </div>
+
+                    <div class=" col-md-6">
+                        <input type="text" class="form-control col-md-6" name="teacher_department" id="teacher_department" style="border-radius:6px;" placeholder="څانګه" value="@Model.department" />
+                        <br />
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-1"></div>
+                <div class="form-group col-md-11">
+                    <div class="col-md-2 ">
+
+                        <label style="font-size:20px">تیلیفون شماره</label>
+
+                    </div>
+
+                    <div class=" col-md-6">
+                        <input type="number" class="form-control col-md-6" name="teacher_phonenumber" id="teacher_phonenumber" style="border-radius:6px;" placeholder="تلیفون شماره" value="@Model.phone_number" />
+                        <br />
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-1"></div>
+                <div class="form-group col-md-11">
+                    <div class="col-md-2 ">
+
+                        <label style="font-size:20px">ایمیل</label>
+
+                    </div>
+
+                    <div class=" col-md-6">
+                        <input type="email" class="form-control col-md-6" name="teacher_email" id="teacher_email" style="border-radius:6px;" placeholder="ایمیل" value="@Model.email" />
+                        <br />
+
+                    </div>
+
+                </div>
+                <div class="col-md-8">
+                    <button type="button" class="btn green mt-ladda-btn ladda-button btn-outline pull-right" data-style="slide-down" data-spinner-color="#333" style="padding:6px 20px 6px 20px;" onclick="UpdateRecord()">
+                        <span class="ladda-label">
+                            <i id="icon" class="fa fa-edit"></i> تغیرول
+                        </span>
+                        <span class="ladda-spinner"></span>
+                    </button>
+                </div>
+
+            </div>
+        </form>
+    </div>
+
+
+    <script type="text/javascript">
+        function UpdateRecord() {
+            var id = document.getElementById("teacher_id").value;
+            var idcard = document.getElementById("teacher_idcardnumber").value;
+            var firstname = document.getElementById("teacher_name").value;
+            var lastname = document.getElementById("teacher_lastname").value;
+            var fathername = document.getElementById("teacher_fathername").value;
+           
+            var gender = document.getElementById("teacher_gender").value;
+            var university = document.getElementById("teacher_university").value;
+            var faculty = document.getElementById("teacher_faculty").value;
+            var department = document.getElementById("teacher_department").value;
+            var phonenumber = document.getElementById("teacher_phonenumber").value;
+            var email = document.getElementById("teacher_email").value;
+            var emailPatteren = new RegExp("^[^\\s]+" + String.fromCharCode(64) + "[^\\s]+\\.[^\\s]+$");
+            
+            if (idcard == "") {
+                document.getElementById("teacher_idcardnumber").style.border = "1px solid red";
+                document.getElementById("teacher_idcardnumber").focus();
+            }
+            else if (firstname == "") {
+                document.getElementById("teacher_name").style.border = "1px solid red";
+                document.getElementById("teacher_name").focus();
+            }
+            else if (/^\d+$/.test(firstname)) {
+                swal(" نوم صحې ولیکئ", "", {
+                    icon: "error",
+                    buttons: "سمه ده"
+
+                });
+                document.getElementById("teacher_name").style.border = "1px solid red";
+                document.getElementById("teacher_name").focus();
+            }
+            else if (lastname == "") {
+                document.getElementById("teacher_lastname").style.border = "1px solid red";
+                document.getElementById("teacher_lastname").focus();
+            }
+            else if (/^\d+$/.test(lastname)) {
+                swal(" تخلص صحې ولیکئ", "", {
+                    icon: "error",
+                    buttons: "سمه ده"
+
+                });
+                document.getElementById("teacher_lastname").style.border = "1px solid red";
+                document.getElementById("teacher_lastname").focus();
+            }
+            else if (fathername == "") {
+                document.getElementById("teacher_fathername").style.border = "1px solid red";
+                document.getElementById("teacher_fathername").focus();
+            }
+            else if (/^\d+$/.test(fathername)) {
+                swal("د پلار نوم صحې ولیکئ", "", {
+                    icon: "error",
+                    buttons: "سمه ده"
+
+                });
+                document.getElementById("teacher_fathername").style.border = "1px solid red";
+                document.getElementById("teacher_fathername").focus();
+            }
+           
+            else if (gender == "") {
+                document.getElementById("teacher_gender").style.border = "1px solid red";
+                document.getElementById("teacher_gender").focus();
+            }
+            else if (university == "") {
+                document.getElementById("teacher_university").style.border = "1px solid red";
+                document.getElementById("teacher_university").focus();
+            }
+            else if (/^\d+$/.test(university)) {
+                swal("د پوهنتون نوم صحې ولیکئ", "", {
+                    icon: "error",
+                    buttons: "سمه ده"
+
+                });
+                document.getElementById("teacher_university").style.border = "1px solid red";
+                document.getElementById("teacher_university").focus();
+            }
+            else if (faculty == "") {
+                document.getElementById("teacher_faculty").style.border = "1px solid red";
+                document.getElementById("teacher_faculty").focus();
+            }
+            else if (/^\d+$/.test(faculty)) {
+                swal("د پوهنځي نوم صحې ولیکئ", "", {
+                    icon: "error",
+                    buttons: "سمه ده"
+
+                });
+                document.getElementById("teacher_faculty").style.border = "1px solid red";
+                document.getElementById("teacher_faculty").focus();
+            }
+            else if (department == "") {
+                document.getElementById("teacher_department").style.border = "1px solid red";
+                document.getElementById("teacher_department").focus();
+            }
+            else if (/^\d+$/.test(department)) {
+                swal("د څانګي نوم صحې ولیکئ", "", {
+                    icon: "error",
+                    buttons: "سمه ده"
+
+                });
+                document.getElementById("teacher_department").style.border = "1px solid red";
+                document.getElementById("teacher_department").focus();
+            }
+            else if (phonenumber == "") {
+                document.getElementById("teacher_phonenumber").style.border = "1px solid red";
+                document.getElementById("teacher_phonenumber").focus();
+            }
+            else if (!((phonenumber.startsWith("07") && phonenumber.length === 10) || (phonenumber.startsWith("0093") && phonenumber.length === 13))) {
+                swal("صحي شماره ولیکئ", "", {
+                    icon: "error",
+                    buttons: "سمه ده"
+
+                });
+                document.getElementById("teacher_phonenumber").style.border = "1px solid red";
+                document.getElementById("teacher_phonenumber").focus
+            }
+            else if (email != "" && !emailPatteren.test(email))
+            {
+                swal("صحي ایمیل ولیکئ", "", {
+                    icon: "error",
+                    buttons: "سمه ده"
+
+                });
+                document.getElementById("teacher_email").style.border = "1px solid red";
+                document.getElementById("teacher_email").focus();
+            }
+            else
+            {
+                var obj = {
+                    person_id: id,
+                    person_idCard: idcard,
+                    person_firstname: firstname,
+                    person_lastname: lastname,
+                    person_father_name: fathername,
+                    
+                    gender: gender,
+                    university: university,
+                    faculty: faculty,
+                    department: department,
+                    phone_number: phonenumber,
+                    email: email
+                };
+                $.ajax({
+                    url: "/Person/TeacherEdit",
+                    type: "post",
+                    data: obj,
+                    success: function (response) {
+                        if (response == true) {
+                            
+                            window.location.href = '/Person/TeacherView';
+                        }
+                        else {
+                            swal("ستونزه رامنځته شوه", "", {
+                                icon: "error",
+                                buttons: "سمه ده"
+
+                            });
+                        }
+                    },
+                    error: function (err) {
+                        swal("ستونزه رامنځته شوه", "", {
+                            icon: "error",
+                            buttons: "سمه ده"
+
+                        });
+                    }
+                });
+            }
+
+
+        }
+
+    </script>
+    <script src="~/assets/alert.js"></script>
+</body>
+</html>

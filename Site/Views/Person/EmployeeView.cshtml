@@ -1,0 +1,194 @@
+﻿@model IEnumerable<Site.Models.Person>
+
+<html>
+<head>
+</head>
+<body>
+    <div class="row">
+        <div class="note note-success">
+
+            <h3 style="color: gray; font-weight:bold; text-align:center;"> د کارمندانو لیست </h3>
+        </div>
+        <div class="col-md-12">
+            <!-- BEGIN EXAMPLE TABLE PORTLET-->
+            <div class="portlet box green">
+                <div class="portlet-title">
+
+                    <div class="tools"> </div>
+                </div>
+
+                <div class="portlet-body">
+
+                    <table class="table table-striped table-bordered table-hover" id="sample_2">
+                        <thead>
+                            <tr>
+                                <th>شماره</th>
+                                <th>تذکری نمبر</th>
+                                <th>نوم</th>
+                                <th>تخلص</th>
+                                <th>پلار نوم</th>
+                                <th>دنده</th>
+                                <th>جنس</th>
+                                <th>پوهنتون</th>
+                                <th>پوهنځی</th>
+                                <th>مبایل شماره</th>
+                                <th>ایمیل</th>
+                                <th>عمل</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @{
+                                long number = 1;
+                                var idcardIdTdId = "";
+                                var nameIdTdId = "";
+                                var lastnameIdTdId = "";
+                                var fatherIdTdId = "";
+                                var stateIdTdId = "";
+                                var genderIdTdId = "";
+                                var universityIdTdId = "";
+                                var facultyIdTdId = "";
+                                
+                               
+                                var phoneIdTdId = "";
+                                var emailIdTdId = "";
+                                foreach (var item in Model)
+                                {
+                                    idcardIdTdId = "idcardIdTdId" + item.person_id;
+                                    nameIdTdId = "nameIdTdId" + item.person_id;
+                                    lastnameIdTdId = "lastnameIdTdId" + item.person_id;
+                                    fatherIdTdId = "fatherIdTdId" + item.person_id;
+                                    stateIdTdId = "stateIdTdId" + item.person_id;
+                                    genderIdTdId = "genderIdTdId" + item.person_id;
+                                    universityIdTdId = "universityIdTdId" + item.person_id;
+                                    facultyIdTdId = "facultyIdTdId" + item.person_id;
+                                   
+                                    phoneIdTdId = "phoneIdTdId" + item.person_id;
+                                    emailIdTdId = "emailIdTdId" + item.person_id;
+                                    <tr id="@item.person_id">
+
+                                        <td id="@item.person_id">@number</td>
+                                        <td id="idcardIdTdId">@item.person_idCard</td>
+                                        <td id="nameIdTdId">@item.person_firstname</td>
+                                        <td id="lastnameIdTdId">@item.person_lastname</td>
+                                        <td id="fatherIdTdId">@item.person_father_name</td>
+                                        <td id="stateIdTdId">@item.person_state</td>
+                                        <td id="genderIdTdId">@item.gender</td>
+                                        <td id="universityIdTdId">@item.university</td>
+                                        <td id="facultyIdTdId">@item.faculty</td>
+                                        
+                                        <td id="phoneIdTdId">@item.phone_number</td>
+                                        <td id="emailIdTdId">@item.email</td>
+
+                                        <td>
+                                            <a href="/Person/EmployeeEditView/@item.person_id" class="btn green mt-ladda-btn ladda-button btn-outline" data-style="slide-down" data-spinner-color="#333">
+                                                <span class="ladda-label">
+                                                    <i class="fa fa-edit"></i> تغیرات
+                                                </span>
+                                                <span class="ladda-spinner"></span>
+                                            </a>
+
+                                            <button type="button" class="btn red mt-ladda-btn ladda-button btn-outline" data-style="slide-down" data-spinner-color="#333" onclick="EmployeeDelete(@item.person_id)">
+                                                <span class="ladda-label">
+                                                    <i class="fa fa-trash"></i> حذف
+                                                </span>
+                                                <span class="ladda-spinner"></span>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    number++;
+                                }
+
+
+
+                            }
+
+
+
+
+                        </tbody>
+
+                    </table>
+
+
+                </div>
+
+            </div>
+            <!-- END EXAMPLE TABLE PORTLET-->
+
+        </div>
+
+    </div>
+
+    <script type="text/javascript">
+
+        function EmployeeDelete(id) {
+
+
+            swal({
+                title: "ایا تاسو ډاډه یاست؟",
+                text: "یو ځل چې معلومات له منځه لاړل د بیا ځل لپاره یې نشئ ترلاسه کولی!",
+                icon: "warning",
+                buttons: ["نه", "هو"]
+                ,
+                dangerMode: true,
+            })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        // If user clicked yes button
+
+                        $.ajax({
+                            type: 'POST',
+                            url: '/Person/EmployeeDelete',
+                            data: { id: id },
+                            success: function (response) {
+                                if (response == true) {
+
+
+                                    swal("په بریالیتوب سره معلومات له سېسټم څخه لرې شو.", "", {
+                                        icon: "success",
+                                        buttons: "سمه ده",
+
+                                    });
+                                    const elementToRemove = document.getElementById('' + id);
+
+                                    elementToRemove.remove();
+
+                                }
+                                else if (response == false) {
+                                    swal("ستونزه رامنځته شوه", "", {
+                                        icon: "error",
+                                        buttons: "سمه ده"
+                                    });
+                                }
+                                else {
+                                    swal("ستونزه رامنځته شوه", "Exception: " + response.responseText, {
+                                        icon: "error",
+                                        buttons: "سمه ده"
+                                    });
+                                }
+
+
+                            },
+                            error: function (error) {
+                                swal("ستونزه رامنځته شوه", "Error: " + error.responseText, {
+                                    icon: "error",
+                                    buttons: "سمه ده"
+                                });
+                            }
+                        });
+
+
+                    } else {
+                        swal("معلومات خوندي پاتې شول!", "", { icon: "info", buttons: "سمه ده" });
+                    }
+                });
+        }
+
+
+    </script>
+
+    <script src="~/assets/alert.js"></script>
+</body>
+</html>

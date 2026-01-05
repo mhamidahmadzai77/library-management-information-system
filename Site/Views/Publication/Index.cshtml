@@ -1,0 +1,184 @@
+﻿@model Site.Models.PublicationQueryResultModel
+
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>دننګرهار پوهنتون دحقوقو او سیاسي علومو پوهنځي د کتابونو لست</title>
+    <link href="~/assets/sweetalert.css" rel="stylesheet" />
+</head>
+<body>
+
+
+    <div class="row">
+        <div class="col-md-12">
+            <!-- BEGIN EXAMPLE TABLE PORTLET-->
+            <div class="portlet box green">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="icon-settings"></i> د کتابونو، مجلو، تېزسونو او مونوګرافونو معلوماتي لست
+                    </div>
+                    <div class="tools"> </div>
+                </div>
+                <div class="portlet-body">
+                    <table class="table table-striped table-bordered table-hover" id="sample_2">
+                        <thead>
+                            <tr>
+                                <th> شماره</th>
+                                <th> کوډ</th>
+                                <th> د کتاب نوم </th>
+                                <th> لیکوال | لیکوالان </th>
+                                <th> جلد</th>
+                                <th> چاپ</th>
+                                <th> د تأسیس ډول</th>
+                                <th> ترجمان </th>
+                                <th> ژبه </th>
+                                <th> شعبه </th>
+                                <th> د وړلو اجازه </th>
+                                <th style="text-align:center;"> عمل </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{
+                                int number = 1;
+
+
+                                foreach (var result in Model.QueryResults)
+                                {
+                                    <tr id="@result.s_no">
+                                        @*BEGIN COL 1*@
+                                        <td> @number </td>
+                                        @*END COL 1*@
+
+                                        @*BEGIN COL 2*@
+                                        <td> @result.edition_id </td>
+                                        @*END COL 2*@
+
+                                        @*BEGIN COL 3*@
+                                        <td> @result.publication_name </td>
+                                        @*END COL 3*@
+
+                                        @*BEGIN COL 4*@
+                                        <td> @result.authors </td>
+                                        @*END COL 4*@
+
+                                        @*BEGIN COL 5*@
+                                        <td> @result.segment_no</td>
+                                        @*END COL 5*@
+
+
+                                        @*BEGIN COL 6*@
+                                        <td> @result.edition_no </td>
+                                        @*END COL 6*@
+
+                                        @*BEGIN COL 7*@
+                                        @if (result.publication_type == "Book")
+                                        {
+                                            <td> کتاب </td>
+                                        }
+                                        else if (result.publication_type == "Magazine")
+                                        {
+                                            <td> مجله </td>
+                                        }
+                                        else if (result.publication_type == "Monograph")
+                                        {
+                                            <td> مونوګراف </td>
+                                        }
+                                        else if (result.publication_type == "Thesis")
+                                        {
+                                            <td> تېزس </td>
+                                        }
+                                        else
+                                        {
+                                            <td>  </td>
+
+                                        }
+                                        @*END COL 7*@
+
+                                        @*BEGIN COL 8*@
+                                        <td> @result.translator </td>
+                                        @*END COL 8*@
+
+                                        @*BEGIN COL 9*@
+                                        <td> @result.publication_language </td>
+                                        @*END COL 9*@
+
+                                        @*BEGIN COL 10*@
+                                        <td> @result.branch </td>
+                                        @*END COL 10*@
+
+                                        @*BEGIN COL 11*@
+                                        @{
+                                            if (result.permission == false)
+                                            {
+                                                <td> شته </td>
+
+                                            }
+                                            else
+                                            {
+                                                <td> نشته </td>
+
+                                            }
+                                        }
+                                        @*END COL 11*@
+
+                                        @*BEGIN COL 12*@
+                                        <td>
+                                            <a href="/Publication/PublicationDetails/@result.s_no/@result.publication_type" class="btn green mt-ladda-btn ladda-button btn-outline" data-style="slide-down" data-spinner-color="#333">
+                                                <span class="ladda-label">
+                                                    <i class="icon-list"></i> نور معلومات
+                                                </span>
+                                                <span class="ladda-spinner"></span>
+                                            </a>
+                                            <a href="/Barcode/Index/@result.edition_id" target="_blank" class="btn green mt-ladda-btn ladda-button btn-outline" data-style="slide-down" data-spinner-color="#800">
+                                                <span class="ladda-label">
+                                                    <i class="fa fa-print"></i> lable
+                                                </span>
+                                                <span class="ladda-spinner"></span>
+                                            </a>
+
+                                            @{
+                                                if (Session["user"] != null)
+                                                {
+                                                    if (Session["user"].ToString() == "authenticated")
+                                                    {
+                                                        if (Session["level"].ToString() == "admin" || Session["level"].ToString() == "director")
+                                                        {
+                                                            <button type="button" onclick="DeleteConfirmation(@result.s_no)" class="btn red mt-ladda-btn ladda-button btn-outline" data-style="slide-down" data-spinner-color="#800">
+                                                                <span class="ladda-label">
+                                                                    <i class="fa fa-trash-o"></i> لرې کول
+                                                                </span>
+                                                                <span class="ladda-spinner"></span>
+                                                            </button>
+
+                                                        }
+                                                    }
+                                                }
+
+                                            }
+
+                                        </td>
+                                        @*END COL 12*@
+
+                                    </tr>
+                                    number++;
+                                }
+
+
+                            }
+
+
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- END EXAMPLE TABLE PORTLET-->
+        </div>
+    </div>
+    <script src="~/assets/alert.js"></script>
+    <script src="~/assets/publication/delete.js"></script>
+</body>
+</html>
+
